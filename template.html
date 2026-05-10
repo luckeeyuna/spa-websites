@@ -3,32 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{BUSINESS_NAME}} — {{CITY}}</title>
+<title>__BUSINESS_NAME__ -- __CITY__</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Italiana&family=Jost:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#0e0c0a;--ink2:#1a1714;--ink3:#252019;
-  --dust:#f7f2eb;--dust2:#ede6da;
-  --gold:#b8965a;--gold2:#d4b07a;--gold3:#8a6c38;
-  --serif:'Italiana',Georgia,serif;
-  --sans:'Jost',system-ui,sans-serif;
-  --mono:'Didact Gothic',monospace;
-}
+:root{--ink:#0e0c0a;--ink2:#1a1714;--dust:#f7f2eb;--gold:#b8965a;--gold2:#d4b07a;--serif:'Italiana',Georgia,serif;--sans:'Jost',system-ui,sans-serif;--mono:'Didact Gothic',monospace}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--ink);color:var(--dust);overflow-x:hidden;line-height:1.7;cursor:none}
-.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s;mix-blend-mode:difference}
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(184,150,90,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s}
 nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,12,10,0.9),transparent);pointer-events:none}
 .nav-logo{position:relative;font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--dust);letter-spacing:0.08em;z-index:1}
-.nav-logo em{color:var(--gold);font-style:normal}
 .nav-links{position:relative;display:flex;gap:3rem;list-style:none;z-index:1}
 .nav-links a{font-size:0.68rem;font-weight:300;letter-spacing:0.22em;text-transform:uppercase;color:rgba(247,242,235,0.55);text-decoration:none;transition:color 0.4s;font-family:var(--mono)}
 .nav-links a:hover{color:var(--gold)}
 .nav-reserve{position:relative;z-index:1;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,150,90,0.4);padding:0.6rem 1.6rem;text-decoration:none;transition:all 0.4s}
-.nav-reserve:hover{background:rgba(184,150,90,0.08);border-color:var(--gold)}
+.nav-reserve:hover{background:rgba(184,150,90,0.08)}
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
 .hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:10rem 3rem 6rem 4rem;position:relative;z-index:2}
 .hero-right{position:relative;overflow:hidden}
@@ -57,7 +49,6 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .marquee-wrap{background:var(--gold);padding:0.7rem 0;overflow:hidden;white-space:nowrap}
 .marquee-inner{display:inline-flex;animation:marquee 20s linear infinite}
 .marquee-item{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);padding:0 3rem}
-.marquee-sep{color:rgba(14,12,10,0.4)}
 .philosophy{padding:8rem 4rem;display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;border-bottom:1px solid rgba(247,242,235,0.06)}
 .phil-left{position:sticky;top:8rem}
 .phil-num{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem}
@@ -85,7 +76,7 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .svc-price{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;color:var(--gold);text-align:right}
 .gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:320px 320px;gap:3px}
 .g1{grid-column:1/5;grid-row:1/2}.g2{grid-column:5/9;grid-row:1/3}.g3{grid-column:9/13;grid-row:1/2}.g4{grid-column:1/4;grid-row:2/3}.g5{grid-column:4/6;grid-row:2/3}.g6{grid-column:9/13;grid-row:2/3}
-.gallery-item{overflow:hidden;position:relative}
+.gallery-item{overflow:hidden}
 .gallery-item img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6) saturate(0.75);transition:transform 0.8s ease,filter 0.5s}
 .gallery-item:hover img{transform:scale(1.05);filter:brightness(0.75) saturate(0.9)}
 .reviews{padding:8rem 4rem;background:var(--ink2)}
@@ -99,7 +90,7 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .review-stars{display:flex;gap:4px;margin-bottom:2rem}
 .review-star{width:5px;height:5px;border-radius:50%;background:var(--gold)}
 .review-quote-mark{font-family:var(--serif);font-size:4rem;color:rgba(184,150,90,0.15);line-height:0.5;margin-bottom:1.25rem}
-.review-text{font-family:var(--serif);font-size:1.05rem;font-style:italic;font-weight:400;color:rgba(247,242,235,0.6);line-height:1.75;margin-bottom:2.5rem}
+.review-text{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(247,242,235,0.6);line-height:1.75;margin-bottom:2.5rem}
 .review-sep{width:24px;height:1px;background:rgba(184,150,90,0.3);margin-bottom:1.5rem}
 .review-author{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,242,235,0.35)}
 .review-author strong{color:rgba(247,242,235,0.7);display:block;margin-bottom:0.2rem}
@@ -118,10 +109,9 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .cta-location{margin-top:2.5rem;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;color:rgba(247,242,235,0.3);text-transform:uppercase}
 footer{background:var(--ink);border-top:1px solid rgba(247,242,235,0.06);padding:4rem}
 .footer-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
-.footer-logo{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--dust);letter-spacing:0.08em}
-.footer-logo em{color:var(--gold);font-style:normal}
+.footer-logo{font-family:var(--serif);font-size:1.3rem;color:var(--dust);letter-spacing:0.08em}
 .footer-center{text-align:center;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;color:rgba(247,242,235,0.25);line-height:1.9;text-transform:uppercase}
-.footer-right{text-align:right;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;color:rgba(247,242,235,0.15);text-transform:uppercase}
+.footer-right{text-align:right;font-family:var(--mono);font-size:0.6rem;color:rgba(247,242,235,0.15);text-transform:uppercase}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.9s ease,transform 0.9s ease}
 .reveal.in{opacity:1;transform:none}
 .reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}
@@ -131,7 +121,7 @@ footer{background:var(--ink);border-top:1px solid rgba(247,242,235,0.06);padding
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(max-width:900px){
   nav{padding:1.5rem}.nav-links{display:none}
-  .hero{grid-template-columns:1fr;min-height:auto}.hero-right{height:50vw}
+  .hero{grid-template-columns:1fr}.hero-right{height:50vw}
   .hero-left{padding:6rem 1.5rem 3rem}.hero h1{font-size:3.5rem}
   .philosophy,.services,.reviews{padding:4rem 1.5rem}
   .philosophy{grid-template-columns:1fr}.phil-left{position:static}
@@ -148,178 +138,107 @@ footer{background:var(--ink);border-top:1px solid rgba(247,242,235,0.06);padding
 <body>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursor-ring"></div>
-
 <nav>
-  <div class="nav-logo">{{BUSINESS_NAME}}</div>
+  <div class="nav-logo">__BUSINESS_NAME__</div>
   <ul class="nav-links">
     <li><a href="#services">Treatments</a></li>
     <li><a href="#about">Story</a></li>
     <li><a href="#reviews">Voices</a></li>
     <li><a href="#contact">Reserve</a></li>
   </ul>
-  <a href="tel:{{PHONE_RAW}}" class="nav-reserve">Reserve Now</a>
+  <a href="tel:__PHONE_RAW__" class="nav-reserve">Reserve Now</a>
 </nav>
-
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-number">{{CITY}} — Massage &amp; Spa</div>
-    <h1>
-      <span>Where</span>
-      <span>stillness</span>
-      <span class="italic">begins.</span>
-    </h1>
+    <div class="hero-number">__CITY__ -- Massage and Spa</div>
+    <h1><span>Where</span><span>stillness</span><span class="italic">begins.</span></h1>
     <div class="hero-meta">
       <div class="hero-rating">
-        <div class="stars-row">
-          <div class="star-dot"></div><div class="star-dot"></div>
-          <div class="star-dot"></div><div class="star-dot"></div>
-          <div class="star-dot"></div>
-        </div>
-        <span class="rating-score">{{RATING}}</span>
-        <span class="rating-info">/ {{REVIEW_COUNT}} verified guests</span>
+        <div class="stars-row"><div class="star-dot"></div><div class="star-dot"></div><div class="star-dot"></div><div class="star-dot"></div><div class="star-dot"></div></div>
+        <span class="rating-score">__RATING__</span>
+        <span class="rating-info">/ __REVIEW_COUNT__ verified guests</span>
       </div>
-      <div class="hero-address">{{ADDRESS}}</div>
+      <div class="hero-address">__ADDRESS__</div>
     </div>
     <div class="hero-actions">
-      <a href="tel:{{PHONE_RAW}}" class="btn-primary">☎ {{PHONE}}</a>
+      <a href="tel:__PHONE_RAW__" class="btn-primary">__PHONE__</a>
       <a href="#services" class="btn-ghost">Our Treatments</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-img"></div>
-  </div>
-  <div class="hero-scroll">
-    <span class="scroll-label">Scroll</span>
-    <div class="scroll-bar"></div>
-  </div>
+  <div class="hero-right"><div class="hero-img"></div></div>
+  <div class="hero-scroll"><span class="scroll-label">Scroll</span><div class="scroll-bar"></div></div>
 </section>
-
 <div class="marquee-wrap">
   <div class="marquee-inner">
-    <span class="marquee-item">Swedish Massage <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Deep Tissue Therapy <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Hot Stone Ritual <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Couples Sessions <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">{{CITY}}'s Finest Spa <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Swedish Massage <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Deep Tissue Therapy <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Hot Stone Ritual <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Couples Sessions <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">{{CITY}}'s Finest Spa <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Swedish Massage</span><span class="marquee-item">Deep Tissue Therapy</span>
+    <span class="marquee-item">Hot Stone Ritual</span><span class="marquee-item">Couples Sessions</span>
+    <span class="marquee-item">__CITY__ Finest Spa</span><span class="marquee-item">Swedish Massage</span>
+    <span class="marquee-item">Deep Tissue Therapy</span><span class="marquee-item">Hot Stone Ritual</span>
+    <span class="marquee-item">Couples Sessions</span><span class="marquee-item">__CITY__ Finest Spa</span>
   </div>
 </div>
-
 <section class="philosophy" id="about">
   <div class="phil-left reveal">
-    <div class="phil-num">01 — Philosophy</div>
+    <div class="phil-num">01 -- Philosophy</div>
     <h2 class="phil-title">Rest is<br>not a<br><em>luxury.</em></h2>
   </div>
   <div class="phil-right reveal reveal-d2">
-    <p class="phil-body">{{BUSINESS_NAME}} was built on a quiet conviction: that every body carries tension it hasn't yet learned to release. Our therapists are trained to listen before they touch — to understand the story your muscles are telling, and to help rewrite it.</p>
-    <p class="phil-body">What you find here is not a service. It is a practice. A ritual of restoration that begins the moment you step through our door and lingers long after you leave.</p>
+    <p class="phil-body">__BUSINESS_NAME__ was built on a quiet conviction: that every body carries tension it has not yet learned to release. Our therapists listen before they touch.</p>
+    <p class="phil-body">What you find here is not a service. It is a practice. A ritual of restoration that begins the moment you step through our door.</p>
     <div class="phil-stats">
-      <div class="stat-box">
-        <span class="stat-num">{{RATING}}</span>
-        <span class="stat-label">Google Rating</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">{{REVIEW_COUNT}}+</span>
-        <span class="stat-label">Verified Guests</span>
-      </div>
+      <div class="stat-box"><span class="stat-num">__RATING__</span><span class="stat-label">Google Rating</span></div>
+      <div class="stat-box"><span class="stat-num">__REVIEW_COUNT__+</span><span class="stat-label">Verified Guests</span></div>
     </div>
   </div>
 </section>
-
 <section class="services" id="services">
   <div class="services-header reveal">
     <h2 class="services-title">Our<br><em>Treatments</em></h2>
     <span class="services-count">03 Curated experiences</span>
   </div>
   <div class="services-list">
-    <div class="service-item reveal">
-      <span class="svc-num">01</span>
-      <div class="svc-name">Swedish Massage</div>
-      <div class="svc-desc">Long, unhurried strokes that ease the nervous system into silence. The foundation of all restoration.</div>
-      <div class="svc-price">60 min — $75<br>90 min — $110</div>
-    </div>
-    <div class="service-item reveal reveal-d1">
-      <span class="svc-num">02</span>
-      <div class="svc-name">Deep Tissue Therapy</div>
-      <div class="svc-desc">Deliberate, sustained pressure that reaches below the surface — releasing tension that ordinary touch cannot.</div>
-      <div class="svc-price">60 min — $85<br>90 min — $130</div>
-    </div>
-    <div class="service-item reveal reveal-d2">
-      <span class="svc-num">03</span>
-      <div class="svc-name">Hot Stone Ritual</div>
-      <div class="svc-desc">Ancient basalt warmed to perfection, gliding through layers of tension. An experience of extraordinary depth.</div>
-      <div class="svc-price">75 min — $105<br>90 min — $145</div>
-    </div>
+    <div class="service-item reveal"><span class="svc-num">01</span><div class="svc-name">Swedish Massage</div><div class="svc-desc">Long, unhurried strokes that ease the nervous system into silence.</div><div class="svc-price">60 min -- $75<br>90 min -- $110</div></div>
+    <div class="service-item reveal reveal-d1"><span class="svc-num">02</span><div class="svc-name">Deep Tissue Therapy</div><div class="svc-desc">Deliberate pressure reaching below the surface, releasing deep tension.</div><div class="svc-price">60 min -- $85<br>90 min -- $130</div></div>
+    <div class="service-item reveal reveal-d2"><span class="svc-num">03</span><div class="svc-name">Hot Stone Ritual</div><div class="svc-desc">Warm basalt stones gliding through layers of tension. Extraordinary depth.</div><div class="svc-price">75 min -- $105<br>90 min -- $145</div></div>
   </div>
 </section>
-
 <div class="gallery">
-  <div class="gallery-item g1"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Spa interior"></div>
+  <div class="gallery-item g1"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Spa"></div>
   <div class="gallery-item g2"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Treatment"></div>
-  <div class="gallery-item g3"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Products"></div>
+  <div class="gallery-item g3"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Oils"></div>
   <div class="gallery-item g4"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=400&q=80" alt="Stones"></div>
-  <div class="gallery-item g5"><img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=400&q=80" alt="Relaxation"></div>
+  <div class="gallery-item g5"><img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=400&q=80" alt="Relax"></div>
   <div class="gallery-item g6"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80" alt="Room"></div>
 </div>
-
 <section class="reviews" id="reviews">
   <div class="reviews-header reveal">
     <div class="reviews-eyebrow">Guest Voices</div>
-    <h2 class="reviews-title">Words from those<br>who've <em>rested here</em></h2>
+    <h2 class="reviews-title">Words from those<br>who have <em>rested here</em></h2>
   </div>
   <div class="reviews-grid">
-    <div class="review-card reveal">
-      <div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div>
-      <div class="review-quote-mark">"</div>
-      <p class="review-text">I walked in carrying a week's worth of tension. I left feeling like a completely different person — lighter, quieter, and genuinely at peace.</p>
-      <div class="review-sep"></div>
-      <div class="review-author"><strong>Jessica M.</strong>Google Review · {{CITY}}</div>
-    </div>
-    <div class="review-card reveal reveal-d1">
-      <div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div>
-      <div class="review-quote-mark">"</div>
-      <p class="review-text">The hot stone ritual was unlike anything I've experienced. There's a warmth here that goes beyond technique — you feel genuinely cared for.</p>
-      <div class="review-sep"></div>
-      <div class="review-author"><strong>David L.</strong>Google Review · {{CITY}}</div>
-    </div>
-    <div class="review-card reveal reveal-d2">
-      <div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div>
-      <div class="review-quote-mark">"</div>
-      <p class="review-text">Fair prices and therapists who actually listen. I've been coming back every month for over a year. Recommended this place to everyone I know.</p>
-      <div class="review-sep"></div>
-      <div class="review-author"><strong>Sarah R.</strong>Google Review · {{CITY}}</div>
-    </div>
+    <div class="review-card reveal"><div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div><div class="review-quote-mark">"</div><p class="review-text">I walked in carrying a week of tension. I left feeling lighter, quieter, and genuinely at peace.</p><div class="review-sep"></div><div class="review-author"><strong>Jessica M.</strong>Google Review · __CITY__</div></div>
+    <div class="review-card reveal reveal-d1"><div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div><div class="review-quote-mark">"</div><p class="review-text">The hot stone ritual was unlike anything I have experienced. You feel genuinely cared for.</p><div class="review-sep"></div><div class="review-author"><strong>David L.</strong>Google Review · __CITY__</div></div>
+    <div class="review-card reveal reveal-d2"><div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div><div class="review-quote-mark">"</div><p class="review-text">Fair prices and therapists who actually listen. I have been coming back every month for over a year.</p><div class="review-sep"></div><div class="review-author"><strong>Sarah R.</strong>Google Review · __CITY__</div></div>
   </div>
 </section>
-
 <section class="cta" id="contact">
-  <div class="cta-bg"></div>
-  <div class="cta-overlay"></div>
+  <div class="cta-bg"></div><div class="cta-overlay"></div>
   <div class="cta-content reveal">
     <div class="cta-eyebrow">Reserve Your Visit</div>
     <h2>Your stillness<br><em>is waiting.</em></h2>
-    <p class="cta-desc">Call to book your session, or simply walk through our door. We'd love to welcome you into a quieter place.</p>
-    <a href="tel:{{PHONE_RAW}}" class="cta-phone">{{PHONE}}</a>
-    <div class="cta-buttons">
-      <a href="tel:{{PHONE_RAW}}" class="btn-primary">Call to Book</a>
-      <a href="#services" class="btn-ghost">View Treatments</a>
-    </div>
-    <div class="cta-location">📍 {{ADDRESS}} · Open Daily 10am – 9pm</div>
+    <p class="cta-desc">Call to book your session, or simply walk through our door.</p>
+    <a href="tel:__PHONE_RAW__" class="cta-phone">__PHONE__</a>
+    <div class="cta-buttons"><a href="tel:__PHONE_RAW__" class="btn-primary">Call to Book</a><a href="#services" class="btn-ghost">View Treatments</a></div>
+    <div class="cta-location">__ADDRESS__ · Open Daily 10am - 9pm</div>
   </div>
 </section>
-
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">{{BUSINESS_NAME}}</div>
-    <div class="footer-center">{{ADDRESS}}<br>{{PHONE}} · Open Daily 10:00 AM – 9:00 PM</div>
-    <div class="footer-right">© 2025 {{BUSINESS_NAME}}<br>All rights reserved</div>
+    <div class="footer-logo">__BUSINESS_NAME__</div>
+    <div class="footer-center">__ADDRESS__<br>__PHONE__ · Open Daily 10:00 AM - 9:00 PM</div>
+    <div class="footer-right">2025 __BUSINESS_NAME__<br>All rights reserved</div>
   </div>
 </footer>
-
 <script>
 const cursor=document.getElementById('cursor');
 const ring=document.getElementById('cursor-ring');
