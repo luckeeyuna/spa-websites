@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heavenly Massage -- Los Alamitos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Italiana&family=Jost:ital,wght@0,200;0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0e0c0a;--ink2:#1a1714;--dust:#f7f2eb;--gold:#b8965a;--gold2:#d4b07a;--serif:'Italiana',Georgia,serif;--sans:'Jost',system-ui,sans-serif;--mono:'Didact Gothic',monospace}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ink);color:var(--dust);overflow-x:hidden;line-height:1.7;cursor:none}
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(184,150,90,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s}
+nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,12,10,0.9),transparent);pointer-events:none}
+.nav-logo{position:relative;font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--dust);letter-spacing:0.08em;z-index:1}
+.nav-links{position:relative;display:flex;gap:3rem;list-style:none;z-index:1}
+.nav-links a{font-size:0.68rem;font-weight:300;letter-spacing:0.22em;text-transform:uppercase;color:rgba(247,242,235,0.55);text-decoration:none;transition:color 0.4s;font-family:var(--mono)}
+.nav-links a:hover{color:var(--gold)}
+.nav-reserve{position:relative;z-index:1;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,150,90,0.4);padding:0.6rem 1.6rem;text-decoration:none;transition:all 0.4s}
+.nav-reserve:hover{background:rgba(184,150,90,0.08)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:10rem 3rem 6rem 4rem;position:relative;z-index:2}
+.hero-right{position:relative;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1200&q=90') center/cover no-repeat;filter:brightness(0.45) saturate(0.7)}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--ink) 0%,transparent 40%)}
+.hero-number{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:3rem;opacity:0;animation:fadeUp 1s 0.3s forwards}
+.hero h1{font-family:var(--serif);font-size:clamp(3.5rem,6vw,6.5rem);font-weight:400;line-height:0.95;color:var(--dust);margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s 0.5s forwards}
+.hero h1 span{display:block}
+.hero h1 .italic{font-style:italic;color:var(--gold2);padding-left:2rem}
+.hero-meta{opacity:0;animation:fadeUp 1s 0.7s forwards}
+.hero-rating{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem}
+.stars-row{display:flex;gap:3px}
+.star-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.rating-score{font-family:var(--serif);font-size:1.4rem;color:var(--gold);line-height:1}
+.rating-info{font-size:0.72rem;color:rgba(247,242,235,0.45);letter-spacing:0.1em;font-family:var(--mono)}
+.hero-address{font-size:0.72rem;color:rgba(247,242,235,0.35);letter-spacing:0.14em;font-family:var(--mono);text-transform:uppercase}
+.hero-actions{display:flex;gap:1.25rem;margin-top:3rem;opacity:0;animation:fadeUp 1s 0.9s forwards}
+.btn-primary{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:1rem 2.5rem;text-decoration:none;transition:all 0.4s;display:inline-block}
+.btn-primary:hover{background:var(--gold2)}
+.btn-ghost{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(247,242,235,0.6);border:1px solid rgba(247,242,235,0.15);padding:1rem 2.5rem;text-decoration:none;transition:all 0.4s;display:inline-block}
+.btn-ghost:hover{border-color:rgba(247,242,235,0.4);color:var(--dust)}
+.hero-scroll{position:absolute;right:3rem;bottom:4rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem;z-index:2;opacity:0;animation:fadeIn 1s 1.5s forwards}
+.scroll-label{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(247,242,235,0.3);writing-mode:vertical-rl}
+.scroll-bar{width:1px;height:80px;background:linear-gradient(to bottom,var(--gold),transparent);position:relative;overflow:hidden}
+.scroll-bar::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--gold);animation:scrollAnim 2s ease-in-out infinite}
+.marquee-wrap{background:var(--gold);padding:0.7rem 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;animation:marquee 20s linear infinite}
+.marquee-item{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink);padding:0 3rem}
+.philosophy{padding:8rem 4rem;display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;border-bottom:1px solid rgba(247,242,235,0.06)}
+.phil-left{position:sticky;top:8rem}
+.phil-num{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem}
+.phil-title{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:400;line-height:1.1;color:var(--dust)}
+.phil-title em{font-style:italic;color:var(--gold2);display:block}
+.phil-right{padding-top:1rem}
+.phil-body{font-size:1rem;color:rgba(247,242,235,0.55);line-height:2;font-weight:200;max-width:560px;margin-bottom:3rem}
+.phil-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(247,242,235,0.05)}
+.stat-box{background:var(--ink2);padding:2rem;text-align:center}
+.stat-num{font-family:var(--serif);font-size:3rem;font-weight:400;color:var(--gold);line-height:1;display:block}
+.stat-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(247,242,235,0.35);margin-top:0.5rem;display:block}
+.services{padding:8rem 4rem}
+.services-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:5rem;border-bottom:1px solid rgba(247,242,235,0.08);padding-bottom:2rem}
+.services-title{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:400;line-height:1.1;color:var(--dust)}
+.services-title em{font-style:italic;color:var(--gold2)}
+.services-count{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;color:rgba(247,242,235,0.3);text-transform:uppercase}
+.services-list{display:flex;flex-direction:column}
+.service-item{display:grid;grid-template-columns:80px 1fr 200px 160px;gap:2rem;align-items:center;padding:2.5rem 0;border-bottom:1px solid rgba(247,242,235,0.06);transition:all 0.5s;position:relative;overflow:hidden}
+.service-item::before{content:'';position:absolute;inset:0;background:rgba(184,150,90,0.03);transform:scaleX(0);transform-origin:left;transition:transform 0.5s ease}
+.service-item:hover::before{transform:scaleX(1)}
+.svc-num{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;color:rgba(247,242,235,0.25);text-transform:uppercase}
+.svc-name{font-family:var(--serif);font-size:1.8rem;font-weight:400;color:var(--dust);transition:color 0.3s}
+.service-item:hover .svc-name{color:var(--gold2)}
+.svc-desc{font-size:0.82rem;color:rgba(247,242,235,0.4);line-height:1.75;font-weight:200}
+.svc-price{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;color:var(--gold);text-align:right}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:320px 320px;gap:3px}
+.g1{grid-column:1/5;grid-row:1/2}.g2{grid-column:5/9;grid-row:1/3}.g3{grid-column:9/13;grid-row:1/2}.g4{grid-column:1/4;grid-row:2/3}.g5{grid-column:4/6;grid-row:2/3}.g6{grid-column:9/13;grid-row:2/3}
+.gallery-item{overflow:hidden}
+.gallery-item img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6) saturate(0.75);transition:transform 0.8s ease,filter 0.5s}
+.gallery-item:hover img{transform:scale(1.05);filter:brightness(0.75) saturate(0.9)}
+.reviews{padding:8rem 4rem;background:var(--ink2)}
+.reviews-header{text-align:center;margin-bottom:6rem}
+.reviews-eyebrow{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem}
+.reviews-title{font-family:var(--serif);font-size:clamp(2.5rem,4vw,3.8rem);font-weight:400;color:var(--dust);line-height:1.1}
+.reviews-title em{font-style:italic;color:var(--gold2)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(247,242,235,0.04)}
+.review-card{background:var(--ink2);padding:3rem 2.5rem;transition:background 0.4s}
+.review-card:hover{background:rgba(247,242,235,0.03)}
+.review-stars{display:flex;gap:4px;margin-bottom:2rem}
+.review-star{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.review-quote-mark{font-family:var(--serif);font-size:4rem;color:rgba(184,150,90,0.15);line-height:0.5;margin-bottom:1.25rem}
+.review-text{font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(247,242,235,0.6);line-height:1.75;margin-bottom:2.5rem}
+.review-sep{width:24px;height:1px;background:rgba(184,150,90,0.3);margin-bottom:1.5rem}
+.review-author{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(247,242,235,0.35)}
+.review-author strong{color:rgba(247,242,235,0.7);display:block;margin-bottom:0.2rem}
+.cta{position:relative;min-height:80vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1600&q=90') center/cover no-repeat;filter:brightness(0.25) saturate(0.6)}
+.cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,12,10,0.8),rgba(14,12,10,0.4))}
+.cta-content{position:relative;z-index:2;text-align:center;max-width:680px;padding:4rem 2rem}
+.cta-eyebrow{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:1rem}
+.cta-eyebrow::before,.cta-eyebrow::after{content:'';display:block;width:40px;height:1px;background:rgba(184,150,90,0.4)}
+.cta h2{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:400;color:var(--dust);line-height:1;margin-bottom:2rem}
+.cta h2 em{font-style:italic;color:var(--gold2);display:block}
+.cta-desc{font-size:0.88rem;color:rgba(247,242,235,0.5);font-weight:200;line-height:1.9;margin-bottom:3rem}
+.cta-phone{font-family:var(--serif);font-size:3rem;color:var(--gold);text-decoration:none;display:block;margin-bottom:2.5rem;letter-spacing:0.05em;transition:color 0.3s}
+.cta-phone:hover{color:var(--gold2)}
+.cta-buttons{display:flex;gap:1rem;justify-content:center}
+.cta-location{margin-top:2.5rem;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;color:rgba(247,242,235,0.3);text-transform:uppercase}
+footer{background:var(--ink);border-top:1px solid rgba(247,242,235,0.06);padding:4rem}
+.footer-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
+.footer-logo{font-family:var(--serif);font-size:1.3rem;color:var(--dust);letter-spacing:0.08em}
+.footer-center{text-align:center;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;color:rgba(247,242,235,0.25);line-height:1.9;text-transform:uppercase}
+.footer-right{text-align:right;font-family:var(--mono);font-size:0.6rem;color:rgba(247,242,235,0.15);text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scrollAnim{0%{top:-100%}100%{top:200%}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(max-width:900px){
+  nav{padding:1.5rem}.nav-links{display:none}
+  .hero{grid-template-columns:1fr}.hero-right{height:50vw}
+  .hero-left{padding:6rem 1.5rem 3rem}.hero h1{font-size:3.5rem}
+  .philosophy,.services,.reviews{padding:4rem 1.5rem}
+  .philosophy{grid-template-columns:1fr}.phil-left{position:static}
+  .services-header{flex-direction:column;align-items:flex-start;gap:1rem}
+  .service-item{grid-template-columns:60px 1fr;gap:1rem}.svc-desc,.svc-price{display:none}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:auto;grid-row:auto;height:200px}
+  .reviews-grid{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}.footer-inner{grid-template-columns:1fr;text-align:center}.footer-right{text-align:center}
+  .cursor,.cursor-ring{display:none}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<nav>
+  <div class="nav-logo">Heavenly Massage</div>
+  <ul class="nav-links">
+    <li><a href="#services">Treatments</a></li>
+    <li><a href="#about">Story</a></li>
+    <li><a href="#reviews">Voices</a></li>
+    <li><a href="#contact">Reserve</a></li>
+  </ul>
+  <a href="tel:5623866080" class="nav-reserve">Reserve Now</a>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-number">Los Alamitos -- Massage and Spa</div>
+    <h1><span>Where</span><span>stillness</span><span class="italic">begins.</span></h1>
+    <div class="hero-meta">
+      <div class="hero-rating">
+        <div class="stars-row"><div class="star-dot"></div><div class="star-dot"></div><div class="star-dot"></div><div class="star-dot"></div><div class="star-dot"></div></div>
+        <span class="rating-score">4.6</span>
+        <span class="rating-info">/ 23 verified guests</span>
+      </div>
+      <div class="hero-address">10670 Los Alamitos Blvd, Los Alamitos, CA 90720, United States</div>
+    </div>
+    <div class="hero-actions">
+      <a href="tel:5623866080" class="btn-primary">562-386-6080</a>
+      <a href="#services" class="btn-ghost">Our Treatments</a>
+    </div>
+  </div>
+  <div class="hero-right"><div class="hero-img"></div></div>
+  <div class="hero-scroll"><span class="scroll-label">Scroll</span><div class="scroll-bar"></div></div>
+</section>
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Swedish Massage</span><span class="marquee-item">Deep Tissue Therapy</span>
+    <span class="marquee-item">Hot Stone Ritual</span><span class="marquee-item">Couples Sessions</span>
+    <span class="marquee-item">Los Alamitos Finest Spa</span><span class="marquee-item">Swedish Massage</span>
+    <span class="marquee-item">Deep Tissue Therapy</span><span class="marquee-item">Hot Stone Ritual</span>
+    <span class="marquee-item">Couples Sessions</span><span class="marquee-item">Los Alamitos Finest Spa</span>
+  </div>
+</div>
+<section class="philosophy" id="about">
+  <div class="phil-left reveal">
+    <div class="phil-num">01 -- Philosophy</div>
+    <h2 class="phil-title">Rest is<br>not a<br><em>luxury.</em></h2>
+  </div>
+  <div class="phil-right reveal reveal-d2">
+    <p class="phil-body">Heavenly Massage was built on a quiet conviction: that every body carries tension it has not yet learned to release. Our therapists listen before they touch.</p>
+    <p class="phil-body">What you find here is not a service. It is a practice. A ritual of restoration that begins the moment you step through our door.</p>
+    <div class="phil-stats">
+      <div class="stat-box"><span class="stat-num">4.6</span><span class="stat-label">Google Rating</span></div>
+      <div class="stat-box"><span class="stat-num">23+</span><span class="stat-label">Verified Guests</span></div>
+    </div>
+  </div>
+</section>
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <h2 class="services-title">Our<br><em>Treatments</em></h2>
+    <span class="services-count">03 Curated experiences</span>
+  </div>
+  <div class="services-list">
+    <div class="service-item reveal"><span class="svc-num">01</span><div class="svc-name">Swedish Massage</div><div class="svc-desc">Long, unhurried strokes that ease the nervous system into silence.</div><div class="svc-price">60 min -- $75<br>90 min -- $110</div></div>
+    <div class="service-item reveal reveal-d1"><span class="svc-num">02</span><div class="svc-name">Deep Tissue Therapy</div><div class="svc-desc">Deliberate pressure reaching below the surface, releasing deep tension.</div><div class="svc-price">60 min -- $85<br>90 min -- $130</div></div>
+    <div class="service-item reveal reveal-d2"><span class="svc-num">03</span><div class="svc-name">Hot Stone Ritual</div><div class="svc-desc">Warm basalt stones gliding through layers of tension. Extraordinary depth.</div><div class="svc-price">75 min -- $105<br>90 min -- $145</div></div>
+  </div>
+</section>
+<div class="gallery">
+  <div class="gallery-item g1"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="Spa"></div>
+  <div class="gallery-item g2"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" alt="Treatment"></div>
+  <div class="gallery-item g3"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Oils"></div>
+  <div class="gallery-item g4"><img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=400&q=80" alt="Stones"></div>
+  <div class="gallery-item g5"><img src="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=400&q=80" alt="Relax"></div>
+  <div class="gallery-item g6"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80" alt="Room"></div>
+</div>
+<section class="reviews" id="reviews">
+  <div class="reviews-header reveal">
+    <div class="reviews-eyebrow">Guest Voices</div>
+    <h2 class="reviews-title">Words from those<br>who have <em>rested here</em></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal"><div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div><div class="review-quote-mark">"</div><p class="review-text">I walked in carrying a week of tension. I left feeling lighter, quieter, and genuinely at peace.</p><div class="review-sep"></div><div class="review-author"><strong>Jessica M.</strong>Google Review · Los Alamitos</div></div>
+    <div class="review-card reveal reveal-d1"><div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div><div class="review-quote-mark">"</div><p class="review-text">The hot stone ritual was unlike anything I have experienced. You feel genuinely cared for.</p><div class="review-sep"></div><div class="review-author"><strong>David L.</strong>Google Review · Los Alamitos</div></div>
+    <div class="review-card reveal reveal-d2"><div class="review-stars"><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div><div class="review-star"></div></div><div class="review-quote-mark">"</div><p class="review-text">Fair prices and therapists who actually listen. I have been coming back every month for over a year.</p><div class="review-sep"></div><div class="review-author"><strong>Sarah R.</strong>Google Review · Los Alamitos</div></div>
+  </div>
+</section>
+<section class="cta" id="contact">
+  <div class="cta-bg"></div><div class="cta-overlay"></div>
+  <div class="cta-content reveal">
+    <div class="cta-eyebrow">Reserve Your Visit</div>
+    <h2>Your stillness<br><em>is waiting.</em></h2>
+    <p class="cta-desc">Call to book your session, or simply walk through our door.</p>
+    <a href="tel:5623866080" class="cta-phone">562-386-6080</a>
+    <div class="cta-buttons"><a href="tel:5623866080" class="btn-primary">Call to Book</a><a href="#services" class="btn-ghost">View Treatments</a></div>
+    <div class="cta-location">10670 Los Alamitos Blvd, Los Alamitos, CA 90720, United States · Open Daily 10am - 9pm</div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Heavenly Massage</div>
+    <div class="footer-center">10670 Los Alamitos Blvd, Los Alamitos, CA 90720, United States<br>562-386-6080 · Open Daily 10:00 AM - 9:00 PM</div>
+    <div class="footer-right">2025 Heavenly Massage<br>All rights reserved</div>
+  </div>
+</footer>
+<script>
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='16px';cursor.style.height='16px';ring.style.width='56px';ring.style.height='56px'});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='36px';ring.style.height='36px'});
+});
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>io.observe(el));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=window.scrollY>100?'rgba(14,12,10,0.95)':'transparent'});
+</script>
+</body>
+</html>
