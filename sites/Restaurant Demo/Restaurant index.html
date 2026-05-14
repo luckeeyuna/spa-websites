@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Olive Table — Long Beach</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --warm: #faf6f0;
+    --earth: #2c2016;
+    --terracotta: #c06b3a;
+    --olive: #6b7c3a;
+    --sand: #e8d9c4;
+    --muted: #857060;
+    --border: #ddd0be;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Outfit', sans-serif; background: var(--warm); color: var(--earth); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 5vw;
+    background: rgba(250,246,240,0.94); backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .logo { font-family: 'EB Garamond', serif; font-size: 1.35rem; font-weight: 700; text-decoration: none; color: var(--earth); letter-spacing: 0.01em; }
+  .logo em { font-style: italic; color: var(--terracotta); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--earth); }
+  .nav-reserve { background: var(--terracotta); color: white !important; padding: 0.5rem 1.25rem; border-radius: 100px; }
+  .nav-reserve:hover { background: var(--earth) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding: 8rem 5vw 5rem;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(192,107,58,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 1.75rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 0.5px; background: var(--terracotta); }
+  h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 700; line-height: 0.95;
+    letter-spacing: -0.02em; margin-bottom: 1.75rem;
+  }
+  h1 em { font-style: italic; color: var(--terracotta); }
+  .hero-desc { font-size: 1rem; color: var(--muted); font-weight: 300; line-height: 1.8; max-width: 440px; margin-bottom: 2.5rem; }
+  .hero-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 2.5rem; }
+  .hero-meta strong { color: var(--earth); }
+  .btn { display: inline-block; text-decoration: none; border-radius: 100px; font-size: 0.9rem; font-weight: 500; padding: 0.875rem 2rem; transition: all 0.2s; cursor: pointer; border: none; font-family: 'Outfit', sans-serif; letter-spacing: 0.01em; }
+  .btn-terra { background: var(--terracotta); color: white; }
+  .btn-terra:hover { background: var(--earth); }
+  .btn-outline { border: 1px solid var(--border); color: var(--earth); background: transparent; }
+  .btn-outline:hover { border-color: var(--terracotta); color: var(--terracotta); }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .hero-image {
+    background: var(--sand); border-radius: 2rem;
+    height: 520px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #c06b3a 0%, #8b4a22 40%, #2c2016 100%);
+    opacity: 0.85;
+  }
+  .hero-image-label {
+    position: relative; z-index: 1;
+    font-family: 'EB Garamond', serif; font-size: 1.75rem; font-style: italic;
+    color: rgba(255,255,255,0.9); font-weight: 400; line-height: 1.3;
+  }
+  .hero-image-sub { position: relative; z-index: 1; font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .hero-badges {
+    position: absolute; top: 1.5rem; left: 1.5rem; z-index: 1;
+    display: flex; gap: 0.5rem;
+  }
+  .badge { background: rgba(255,255,255,0.12); color: white; font-size: 0.7rem; padding: 0.3rem 0.8rem; border-radius: 100px; letter-spacing: 0.08em; }
+
+  /* DIVIDER */
+  .divider { background: var(--earth); display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 1.25rem 5vw; flex-wrap: wrap; }
+  .divider-item { font-size: 0.75rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.45); }
+  .divider-dot { color: var(--terracotta); }
+
+  /* MENU */
+  .menu { padding: 7rem 5vw; }
+  .section-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.75rem; }
+  h2 { font-family: 'EB Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+  h2 em { font-style: italic; color: var(--terracotta); }
+  .menu-sub { font-size: 0.9rem; color: var(--muted); font-weight: 300; margin-bottom: 3.5rem; }
+
+  .menu-cats { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .menu-cat {
+    padding: 0.45rem 1.1rem; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 500; cursor: pointer;
+    border: 1px solid var(--border); color: var(--muted);
+    transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .menu-cat.active { background: var(--terracotta); border-color: var(--terracotta); color: white; }
+
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 1.5rem; border: 1px solid var(--border); border-radius: 1rem;
+    background: white; gap: 1.5rem; transition: all 0.2s;
+  }
+  .menu-item:hover { border-color: var(--terracotta); }
+  .menu-item-info { flex: 1; }
+  .menu-item-name { font-family: 'EB Garamond', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .menu-item-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+  .menu-item-price { font-family: 'EB Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--terracotta); white-space: nowrap; }
+
+  /* STORY */
+  .story { background: var(--earth); padding: 7rem 5vw; }
+  .story-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .story .section-tag { color: var(--terracotta); }
+  .story h2 { color: white; }
+  .story h2 em { color: var(--terracotta); }
+  .story p { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.85; margin-top: 1rem; font-weight: 300; }
+  .story-visual {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1.5rem; height: 360px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'EB Garamond', serif; font-size: 5rem;
+  }
+
+  /* REVIEWS */
+  .reviews { padding: 7rem 5vw; background: var(--sand); }
+  .reviews h2 em { color: var(--terracotta); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 3rem; }
+  .review-card { background: white; border-radius: 1.25rem; padding: 2rem 1.75rem; }
+  .review-stars { color: var(--terracotta); font-size: 0.85rem; margin-bottom: 1rem; }
+  .review-text { font-family: 'EB Garamond', serif; font-size: 1.1rem; font-style: italic; line-height: 1.65; color: var(--earth); margin-bottom: 1.25rem; }
+  .review-author { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+
+  /* VISIT */
+  .visit { padding: 7rem 5vw; }
+  .visit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .visit h2 em { color: var(--terracotta); }
+  .visit p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin: 1rem 0 2rem; font-weight: 300; }
+  .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 2rem; }
+  .hours-row { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 0.5px solid var(--border); font-size: 0.85rem; }
+  .hours-day { color: var(--muted); }
+  .hours-time { font-weight: 500; }
+  .visit-contact { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.875rem; }
+  .contact-icon { width: 38px; height: 38px; background: var(--sand); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 2px; }
+  .contact-val { color: var(--earth); }
+  .map-placeholder { background: var(--sand); border-radius: 1.25rem; height: 320px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--muted); border: 1px solid var(--border); }
+
+  footer { background: var(--earth); color: rgba(255,255,255,0.3); padding: 2.5rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'EB Garamond', serif; font-size: 1.1rem; font-weight: 700; color: white; }
+  .footer-logo em { font-style: italic; color: var(--terracotta); }
+  footer p { font-size: 0.78rem; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-image { height: 320px; }
+    .story-inner, .visit-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    nav .nav-links { display: none; }
+    .hours-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">The <em>Olive</em> Table</a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="tel:5629876543" class="nav-reserve">Reserve a Table</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Mediterranean Cuisine · Long Beach</div>
+    <h1>Good food,<br><em>honest</em><br>flavors.</h1>
+    <p class="hero-desc">A neighborhood restaurant rooted in Mediterranean tradition. Fresh ingredients, slow-cooked recipes, and a table always set for you.</p>
+    <p class="hero-meta">⭐ 4.8 · <strong>312 reviews</strong> on Google &nbsp;·&nbsp; Open for Lunch & Dinner</p>
+    <div class="hero-btns">
+      <a href="tel:5629876543" class="btn btn-terra">Reserve a Table</a>
+      <a href="#menu" class="btn btn-outline">View Menu</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-badges">
+      <div class="badge">Dine In</div>
+      <div class="badge">Takeout</div>
+    </div>
+    <div class="hero-image-label">"Food made<br>with intention."</div>
+    <div class="hero-image-sub">Est. 2016 · Long Beach, CA</div>
+  </div>
+</section>
+
+<div class="divider">
+  <span class="divider-item">Fresh & Local</span>
+  <span class="divider-dot">✦</span>
+  <span class="divider-item">Dine In & Takeout</span>
+  <span class="divider-dot">✦</span>
+  <span class="divider-item">⭐ 4.8 Rating</span>
+  <span class="divider-dot">✦</span>
+  <span class="divider-item">Open 7 Days</span>
+</div>
+
+<section class="menu" id="menu">
+  <div class="section-tag">Menu</div>
+  <h2>Simple, <em>honest</em> food</h2>
+  <p class="menu-sub">Seasonal ingredients. Traditional recipes. Every dish made with care.</p>
+  <div class="menu-cats">
+    <div class="menu-cat active">Starters</div>
+    <div class="menu-cat">Main Dishes</div>
+    <div class="menu-cat">Sides</div>
+    <div class="menu-cat">Desserts</div>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Hummus & Warm Pita</div>
+        <div class="menu-item-desc">House-made hummus, drizzled with olive oil and paprika, served with freshly baked pita.</div>
+      </div>
+      <div class="menu-item-price">$12</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Mezze Platter</div>
+        <div class="menu-item-desc">Hummus, baba ganoush, olives, stuffed grape leaves, and warm bread.</div>
+      </div>
+      <div class="menu-item-price">$22</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Fattoush Salad</div>
+        <div class="menu-item-desc">Crispy pita, seasonal vegetables, sumac dressing, and fresh herbs.</div>
+      </div>
+      <div class="menu-item-price">$14</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Lamb Kofta</div>
+        <div class="menu-item-desc">Spiced ground lamb on skewers, served with tzatziki and tabbouleh.</div>
+      </div>
+      <div class="menu-item-price">$16</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Roasted Eggplant</div>
+        <div class="menu-item-desc">Whole-roasted eggplant, pomegranate, walnuts, and herb oil.</div>
+      </div>
+      <div class="menu-item-price">$13</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info">
+        <div class="menu-item-name">Spiced Calamari</div>
+        <div class="menu-item-desc">Lightly fried calamari with harissa aioli and fresh lemon.</div>
+      </div>
+      <div class="menu-item-price">$15</div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-visual">🫒</div>
+    <div>
+      <div class="section-tag">Our Story</div>
+      <h2>Rooted in<br><em>tradition.</em></h2>
+      <p>The Olive Table was born from a simple idea: bring the warmth of Mediterranean home cooking to the heart of Long Beach. We source our ingredients from local farmers and trusted suppliers who share our belief that quality begins at the source.</p>
+      <p>Every recipe on our menu has a story — passed down through families, refined over years, and served with the care of a home-cooked meal.</p>
+      <a href="#menu" class="btn btn-terra" style="margin-top:2rem; display:inline-block;">Explore the Menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="section-tag">Guest Reviews</div>
+  <h2>What our guests <em>say</em></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The mezze platter alone is worth the trip. Everything tastes like it was made with real love and attention. My new favorite in Long Beach."</p>
+      <div class="review-author">— Carlos M. · Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Incredibly fresh ingredients and generous portions. The lamb kofta is absolutely unreal. We've been back three times this month."</p>
+      <div class="review-author">— Linda H. · Google Review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Warm, welcoming, and the food is outstanding. You can taste the quality in every dish. This is what a neighborhood restaurant should be."</p>
+      <div class="review-author">— James T. · Google Review</div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="visit-inner">
+    <div>
+      <div class="section-tag">Find Us</div>
+      <h2>Come sit<br>at our <em>table.</em></h2>
+      <p>Reservations recommended on weekends, but walk-ins are always welcome.</p>
+      <a href="tel:5629876543" class="btn btn-terra">Call (562) 987-6543</a>
+      <div class="visit-contact" style="margin-top:2rem;">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><div class="contact-label">Address</div><div class="contact-val">3300 E Broadway, Long Beach, CA 90803</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><div class="contact-label">Phone</div><div class="contact-val">(562) 987-6543</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.78rem; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:1rem;">Hours</div>
+      <div class="hours-grid">
+        <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">Closed</span></div>
+        <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">11am – 9pm</span></div>
+        <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">11am – 9pm</span></div>
+        <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">11am – 9pm</span></div>
+        <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">11am – 10pm</span></div>
+        <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">10am – 10pm</span></div>
+        <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">10am – 9pm</span></div>
+      </div>
+      <div class="map-placeholder" style="margin-top:1.5rem;">📍 3300 E Broadway, Long Beach, CA</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">The <em>Olive</em> Table</div>
+  <p>3300 E Broadway, Long Beach, CA 90803</p>
+  <p>© 2025 The Olive Table. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
