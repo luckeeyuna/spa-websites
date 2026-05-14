@@ -6,1096 +6,851 @@
 <title>SiteByYuna — Beautiful Websites for Local Businesses</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black: #0e0e0e;
-    --white: #fafaf8;
-    --gold: #c9a84c;
-    --gold-light: #f0e0b0;
-    --gray: #6b6b6b;
-    --gray-light: #f2f1ee;
-    --border: #e0ddd8;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--black);
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 5vw;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--black);
-    text-decoration: none;
-    letter-spacing: -0.01em;
-  }
-
-  .nav-logo span { color: var(--gold); }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--gray);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--black); }
-
-  .nav-cta {
-    background: var(--black);
-    color: var(--white) !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: 100px;
-    font-size: 0.875rem !important;
-    font-weight: 500 !important;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-
-  .nav-cta:hover { background: var(--gold) !important; color: var(--black) !important; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 5vw 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 55%;
-    height: 120%;
-    background: var(--gray-light);
-    border-radius: 2rem;
-    z-index: 0;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 600px;
-  }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--gray);
-    max-width: 480px;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-    line-height: 1.75;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--black);
-    color: var(--white);
-    padding: 0.875rem 2rem;
-    border-radius: 100px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-  }
-
-  .btn-primary:hover {
-    background: var(--gold);
-    color: var(--black);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--black);
-    padding: 0.875rem 2rem;
-    border-radius: 100px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    display: inline-block;
-  }
-
-  .btn-outline:hover {
-    border-color: var(--black);
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 3.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--gray);
-    margin-top: 0.1rem;
-  }
-
-  /* SECTION COMMONS */
-  section { padding: 6rem 5vw; }
-
-  .section-tag {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.75rem, 3vw, 2.75rem);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
-
-  h2 em { font-style: italic; color: var(--gold); }
-
-  .section-sub {
-    font-size: 1rem;
-    color: var(--gray);
-    font-weight: 300;
-    max-width: 520px;
-    line-height: 1.75;
-    margin-bottom: 3rem;
-  }
-
-  /* HOW IT WORKS */
-  .how { background: var(--gray-light); }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .step {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    padding: 2rem 1.75rem;
-    position: relative;
-  }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--gold-light);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .step h3 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-  }
-
-  .step p {
-    font-size: 0.875rem;
-    color: var(--gray);
-    line-height: 1.65;
-  }
-
-  /* DEMOS */
-  .demos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .demo-card {
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: all 0.3s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    background: var(--white);
-  }
-
-  .demo-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  }
-
-  .demo-preview {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .demo-preview.spa { background: #1a1a2e; color: #c9a84c; }
-  .demo-preview.nail { background: #2d1b3d; color: #e8a0c8; }
-  .demo-preview.hair { background: #1c2b1c; color: #8fc48a; }
-  .demo-preview.restaurant { background: #2b1a0e; color: #e8b87a; }
-
-  .demo-preview .coming-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.7);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
-    font-style: normal;
-    padding: 3px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.05em;
-  }
-
-  .demo-preview .live-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--gold);
-    color: var(--black);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
-    font-style: normal;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-  }
-
-  .demo-info {
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .demo-label { font-size: 0.95rem; font-weight: 500; }
-  .demo-type { font-size: 0.8rem; color: var(--gray); margin-top: 2px; }
-
-  .demo-arrow {
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    color: var(--gray);
-    transition: all 0.2s;
-    flex-shrink: 0;
-  }
-
-  .demo-card:hover .demo-arrow {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--black);
-  }
-
-  /* PRICING */
-  .pricing { background: var(--gray-light); }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-    max-width: 960px;
-  }
-
-  .price-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 1.25rem;
-    padding: 2rem 2rem 2.5rem;
-    position: relative;
-  }
-
-  .price-card.featured {
-    background: var(--black);
-    border-color: var(--black);
-    color: var(--white);
-  }
-
-  .popular-tag {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--black);
-    font-size: 0.72rem;
-    font-weight: 500;
-    padding: 4px 14px;
-    border-radius: 100px;
-    white-space: nowrap;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .price-name {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-  }
-
-  .price-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.75rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 0.25rem;
-  }
-
-  .price-sub {
-    font-size: 0.8rem;
-    color: var(--gray);
-    margin-bottom: 2rem;
-  }
-
-  .price-card.featured .price-sub { color: #888; }
-
-  .price-features {
-    list-style: none;
-    margin-bottom: 2rem;
-  }
-
-  .price-features li {
-    font-size: 0.875rem;
-    padding: 0.5rem 0;
-    border-bottom: 0.5px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .price-card.featured .price-features li {
-    border-color: #333;
-    color: #ccc;
-  }
-
-  .check { color: var(--gold); font-size: 0.9rem; }
-
-  /* MEMBERSHIP */
-  .membership-box {
-    background: var(--black);
-    color: var(--white);
-    border-radius: 1.5rem;
-    padding: 3rem 3.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    margin-top: 2rem;
-  }
-
-  .membership-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-  }
-
-  .membership-box h3 em { font-style: italic; color: var(--gold); }
-
-  .membership-box p {
-    color: #aaa;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .mem-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .mem-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    color: #ccc;
-  }
-
-  .mem-icon {
-    width: 20px;
-    height: 20px;
-    background: rgba(201,168,76,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .mem-icon::after {
-    content: '✓';
-    color: var(--gold);
-    font-size: 0.6rem;
-    font-weight: 700;
-  }
-
-  .mem-price {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 1rem;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .mem-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--gold);
-    line-height: 1;
-  }
-
-  .mem-period { font-size: 0.8rem; color: #888; margin-top: 0.25rem; margin-bottom: 1.5rem; }
-
-  /* ORDER FORM */
-  #order { background: var(--white); }
-
-  .form-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    margin-top: 1rem;
-  }
-
-  .form-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-info p {
-    font-size: 0.875rem;
-    color: var(--gray);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .payment-box {
-    background: var(--gray-light);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .payment-box h4 {
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray);
-  }
-
-  .payment-method {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    border-bottom: 0.5px solid var(--border);
-    font-size: 0.875rem;
-  }
-
-  .payment-method:last-child { border-bottom: none; }
-
-  .pay-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    flex-shrink: 0;
-  }
-
-  .pay-zelle { background: #6d1ed4; color: white; }
-  .pay-paypal { background: #003087; color: white; }
-
-  .pay-detail { font-size: 0.8rem; color: var(--gray); margin-top: 1px; }
-
-  .order-form { display: flex; flex-direction: column; gap: 1.25rem; }
-
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  label { font-size: 0.8rem; font-weight: 500; color: var(--black); }
-
-  input, select, textarea {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    background: var(--white);
-    color: var(--black);
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-  }
-
-  input:focus, select:focus, textarea:focus { border-color: var(--gold); }
-
-  textarea { resize: vertical; min-height: 90px; }
-
-  .package-select {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-  }
-
-  .pkg-opt {
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.8rem;
-  }
-
-  .pkg-opt:hover { border-color: var(--gold); }
-  .pkg-opt.selected { border-color: var(--gold); background: #fdf8ee; }
-  .pkg-opt .pkg-price { font-weight: 700; font-size: 1rem; display: block; margin-bottom: 2px; }
-  .pkg-opt .pkg-name { color: var(--gray); font-size: 0.72rem; }
-
-  .submit-btn {
-    background: var(--black);
-    color: var(--white);
-    border: none;
-    border-radius: 100px;
-    padding: 1rem 2rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  .submit-btn:hover { background: var(--gold); color: var(--black); }
-
-  .form-note {
-    font-size: 0.75rem;
-    color: var(--gray);
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  /* SUCCESS */
-  .success-msg {
-    display: none;
-    background: #f0fdf4;
-    border: 1px solid #86efac;
-    border-radius: 1rem;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .success-msg h3 { color: #166534; margin-bottom: 0.5rem; }
-  .success-msg p { color: #15803d; font-size: 0.875rem; }
-
-  /* FOOTER */
-  footer {
-    background: var(--black);
-    color: var(--white);
-    padding: 3rem 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-  }
-
-  .footer-logo span { color: var(--gold); }
-  footer p { font-size: 0.8rem; color: #555; }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav .nav-links { display: none; }
-    .hero::before { display: none; }
-    .membership-box { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
-    .form-wrap { grid-template-columns: 1fr; gap: 2rem; }
-    .form-row { grid-template-columns: 1fr; }
-    .package-select { grid-template-columns: 1fr; }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --black:#0e0e0e;--white:#fafaf8;--gold:#c9a84c;--gold-light:#f0e0b0;--gray:#6b6b6b;--gray-light:#f2f1ee;--border:#e0ddd8; }
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);font-size:16px;line-height:1.6; }
+
+/* NAV */
+nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 5vw;background:rgba(250,250,248,0.93);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border); }
+.nav-logo { font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--black);text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-right { display:flex;align-items:center;gap:1.5rem; }
+.nav-links { display:flex;gap:1.75rem;list-style:none; }
+.nav-links a { font-size:0.85rem;color:var(--gray);text-decoration:none;transition:color 0.2s; }
+.nav-links a:hover { color:var(--black); }
+.nav-cta { background:var(--black);color:var(--white)!important;padding:0.45rem 1.1rem;border-radius:100px;font-weight:500!important;font-size:0.85rem!important; }
+.nav-cta:hover { background:var(--gold)!important;color:var(--black)!important; }
+
+/* LANGUAGE SWITCHER */
+.lang-switcher { display:flex;gap:0.3rem;align-items:center; }
+.lang-btn { background:none;border:1px solid transparent;border-radius:6px;padding:0.25rem 0.4rem;font-size:0.72rem;font-weight:500;color:var(--gray);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;line-height:1; }
+.lang-btn:hover { border-color:var(--border);color:var(--black); }
+.lang-btn.active { background:var(--black);color:var(--white);border-color:var(--black); }
+
+/* HERO */
+.hero { min-height:100vh;display:flex;align-items:center;padding:8rem 5vw 5rem;position:relative;overflow:hidden; }
+.hero::before { content:'';position:absolute;top:-10%;right:-5%;width:55%;height:120%;background:var(--gray-light);border-radius:2rem;z-index:0; }
+.hero-content { position:relative;z-index:1;max-width:600px; }
+.hero-tag { display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;font-weight:500;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem; }
+.hero-tag::before { content:'';display:inline-block;width:24px;height:1px;background:var(--gold); }
+h1 { font-family:'Playfair Display',serif;font-size:clamp(2.25rem,4.5vw,3.75rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem; }
+h1 em { font-style:italic;color:var(--gold); }
+.hero-sub { font-size:1rem;color:var(--gray);max-width:480px;margin-bottom:2.5rem;font-weight:300;line-height:1.75; }
+.hero-btns { display:flex;gap:1rem;flex-wrap:wrap; }
+.hero-stats { display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border); }
+.stat-num { font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700; }
+.stat-label { font-size:0.78rem;color:var(--gray);margin-top:0.1rem; }
+
+.btn-primary { display:inline-block;background:var(--black);color:var(--white);padding:0.875rem 1.75rem;border-radius:100px;font-size:0.9rem;font-weight:500;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif; }
+.btn-primary:hover { background:var(--gold);color:var(--black); }
+.btn-outline { display:inline-block;background:transparent;color:var(--black);padding:0.875rem 1.75rem;border-radius:100px;font-size:0.9rem;font-weight:500;text-decoration:none;transition:all 0.2s;border:1px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif; }
+.btn-outline:hover { border-color:var(--black); }
+
+section { padding:6rem 5vw; }
+.section-tag { font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem; }
+h2 { font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3vw,2.75rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1rem; }
+h2 em { font-style:italic;color:var(--gold); }
+.section-sub { font-size:0.95rem;color:var(--gray);font-weight:300;max-width:520px;line-height:1.75;margin-bottom:3rem; }
+
+/* HOW */
+.how { background:var(--gray-light); }
+.steps { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:3rem; }
+.step { background:var(--white);border:1px solid var(--border);border-radius:1rem;padding:2rem 1.75rem; }
+.step-num { font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:1rem; }
+.step h3 { font-size:1rem;font-weight:500;margin-bottom:0.5rem; }
+.step p { font-size:0.875rem;color:var(--gray);line-height:1.65; }
+
+/* DEMOS */
+.demos-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem; }
+.demo-card { border:1px solid var(--border);border-radius:1rem;overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;background:var(--white); }
+.demo-card:hover { border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.08); }
+.demo-preview { height:190px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;position:relative; }
+.demo-preview.spa { background:#1a1a2e;color:#c9a84c; }
+.demo-preview.nail { background:#2d1b3d;color:#e8a0c8; }
+.demo-preview.hair { background:#1c2b1c;color:#8fc48a; }
+.demo-preview.restaurant { background:#2b1a0e;color:#e8b87a; }
+.live-badge { position:absolute;top:10px;right:10px;background:var(--gold);color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.68rem;font-style:normal;padding:3px 10px;border-radius:100px;font-weight:500; }
+.demo-info { padding:1.1rem 1.4rem;display:flex;align-items:center;justify-content:space-between; }
+.demo-label { font-size:0.9rem;font-weight:500; }
+.demo-type { font-size:0.78rem;color:var(--gray);margin-top:2px; }
+.demo-arrow { width:30px;height:30px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;color:var(--gray);transition:all 0.2s;flex-shrink:0; }
+.demo-card:hover .demo-arrow { background:var(--gold);border-color:var(--gold);color:var(--black); }
+
+/* BUILDER */
+#builder { background:var(--black);padding:5rem 5vw; }
+#builder .section-tag { color:var(--gold); }
+#builder h2 { color:white; }
+#builder h2 em { color:var(--gold); }
+#builder .section-sub { color:#888; }
+
+.step-indicator { display:flex;align-items:center;margin-bottom:3rem; }
+.step-dot-wrap { display:flex;flex-direction:column;align-items:center; }
+.step-dot { width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:500;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.3);transition:all 0.3s;flex-shrink:0; }
+.step-dot.active { background:var(--gold);border-color:var(--gold);color:var(--black); }
+.step-dot.done { background:rgba(201,168,76,0.15);border-color:var(--gold);color:var(--gold); }
+.step-line { flex:1;height:1px;background:rgba(255,255,255,0.1);margin:0 0.4rem 1.25rem; }
+.step-line.done { background:var(--gold); }
+.step-label { font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:5px;text-align:center;letter-spacing:0.06em;text-transform:uppercase; }
+
+.builder-panel { display:none; }
+.builder-panel.active { display:block; }
+
+.form-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.25rem; }
+.form-group { display:flex;flex-direction:column;gap:0.4rem; }
+.form-group.full { grid-column:1/-1; }
+label { font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.55); }
+input,select,textarea { font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.875rem 1rem;border:1px solid rgba(255,255,255,0.12);border-radius:0.5rem;background:rgba(255,255,255,0.06);color:white;outline:none;transition:border-color 0.2s;width:100%; }
+input::placeholder,textarea::placeholder { color:rgba(255,255,255,0.2); }
+select option { background:#1a1a1a;color:white; }
+input:focus,select:focus,textarea:focus { border-color:var(--gold); }
+textarea { resize:vertical;min-height:110px; }
+
+.theme-picker { display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem; }
+.theme-opt { border:2px solid rgba(255,255,255,0.1);border-radius:0.75rem;padding:1rem 0.5rem;text-align:center;cursor:pointer;transition:all 0.2s; }
+.theme-opt:hover { border-color:rgba(255,255,255,0.3); }
+.theme-opt.selected { border-color:var(--gold); }
+.theme-swatch { width:34px;height:34px;border-radius:50%;margin:0 auto 0.5rem; }
+.theme-name { font-size:0.7rem;color:rgba(255,255,255,0.4); }
+.theme-opt.selected .theme-name { color:var(--gold); }
+
+.generating-screen { text-align:center;padding:5rem 2rem; }
+.gen-spinner { width:60px;height:60px;border:3px solid rgba(201,168,76,0.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 2rem; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.gen-title { font-family:'Playfair Display',serif;font-size:1.75rem;color:white;margin-bottom:1rem; }
+.gen-steps-list { display:flex;flex-direction:column;gap:0.75rem;max-width:300px;margin:2rem auto 0; }
+.gen-step-item { display:flex;align-items:center;gap:0.75rem;font-size:0.875rem;color:rgba(255,255,255,0.3);transition:color 0.5s; }
+.gen-step-item.done { color:var(--gold); }
+.gen-step-item.active { color:white; }
+.gen-check { width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.6rem;flex-shrink:0;transition:all 0.5s; }
+.gen-step-item.done .gen-check { background:var(--gold);border-color:var(--gold);color:var(--black); }
+
+.preview-header { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem; }
+.preview-header h3 { font-family:'Playfair Display',serif;font-size:1.5rem;color:white; }
+.preview-header p { font-size:0.83rem;color:#888;margin-top:0.3rem; }
+.preview-browser { background:#1a1a1a;border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,0.08); }
+.browser-bar { background:#2a2a2a;padding:0.7rem 1rem;display:flex;align-items:center;gap:0.75rem; }
+.browser-dots { display:flex;gap:0.35rem; }
+.browser-dots span { width:10px;height:10px;border-radius:50%; }
+.dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
+.browser-url { flex:1;background:rgba(255,255,255,0.06);border-radius:100px;padding:0.28rem 1rem;font-size:0.73rem;color:rgba(255,255,255,0.3); }
+.preview-iframe { width:100%;height:620px;border:none;display:block; }
+
+.payment-section { margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,0.08); }
+.payment-section>h3 { font-family:'Playfair Display',serif;font-size:1.75rem;color:white;margin-bottom:0.5rem; }
+.payment-section>p { font-size:0.875rem;color:#888;margin-bottom:2rem; }
+
+.pricing-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem; }
+.price-card { border:1px solid rgba(255,255,255,0.1);border-radius:1.25rem;padding:1.75rem;position:relative;cursor:pointer;transition:all 0.2s; }
+.price-card:hover,.price-card.selected { border-color:var(--gold);background:rgba(201,168,76,0.05); }
+.popular-tag { position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:0.68rem;font-weight:500;padding:3px 12px;border-radius:100px;white-space:nowrap; }
+.price-name { font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem; }
+.price-amount { font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:white;line-height:1;margin-bottom:0.2rem; }
+.price-sub { font-size:0.75rem;color:#555;margin-bottom:1.5rem; }
+.price-features { list-style:none; }
+.price-features li { font-size:0.78rem;padding:0.4rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:0.5rem;color:#999; }
+.check { color:var(--gold); }
+
+.pay-methods { display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem; }
+.pay-card { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:1rem;padding:1.25rem;display:flex;align-items:center;gap:1rem; }
+.pay-icon { width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0; }
+.pay-zelle{background:#6d1ed4;color:white;}.pay-paypal{background:#003087;color:white;}
+.pay-name { font-size:0.9rem;font-weight:500;color:white; }
+.pay-sub { font-size:0.75rem;color:#666;margin-top:1px; }
+
+.mem-toggle { background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:1rem;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;cursor:pointer; }
+.mem-toggle input { width:18px;height:18px;background:none;border:none;padding:0;cursor:pointer;flex-shrink:0; }
+.mem-name { font-size:0.9rem;font-weight:500;color:white; }
+.mem-sub { font-size:0.75rem;color:#888;margin-top:2px; }
+
+.order-total { background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.5rem;margin-bottom:1.5rem; }
+.total-row { display:flex;justify-content:space-between;font-size:0.875rem;padding:0.35rem 0;color:#777; }
+.total-main { display:flex;justify-content:space-between;font-size:1.1rem;font-weight:500;color:white;border-top:1px solid rgba(255,255,255,0.1);margin-top:0.5rem;padding-top:1rem; }
+
+.submit-btn { width:100%;background:var(--gold);color:var(--black);border:none;border-radius:100px;padding:1.1rem 2rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s; }
+.submit-btn:hover { background:white; }
+
+.form-nav { display:flex;justify-content:space-between;align-items:center;margin-top:2rem; }
+.btn-back { background:transparent;color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:0.7rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;transition:all 0.2s; }
+.btn-back:hover { color:white;border-color:rgba(255,255,255,0.4); }
+.btn-next { background:var(--gold);color:var(--black);border:none;border-radius:100px;padding:0.875rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s; }
+.btn-next:hover { background:white; }
+
+.success-screen { text-align:center;padding:5rem 2rem; }
+.success-screen h3 { font-family:'Playfair Display',serif;font-size:2rem;color:white;margin-bottom:0.75rem; }
+.success-screen p { color:#888;max-width:400px;margin:0 auto;line-height:1.75; }
+
+footer { background:var(--black);color:var(--white);padding:2.5rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid #1a1a1a; }
+.footer-logo { font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700; }
+.footer-logo span { color:var(--gold); }
+footer p { font-size:0.78rem;color:#555; }
+
+@media(max-width:768px){
+  nav .nav-links{display:none;}
+  .hero::before{display:none;}
+  .form-grid{grid-template-columns:1fr;}
+  .theme-picker{grid-template-columns:repeat(2,1fr);}
+  .pricing-grid{grid-template-columns:1fr;}
+  .pay-methods{grid-template-columns:1fr;}
+  .lang-switcher{gap:0.2rem;}
+  .lang-btn{padding:0.2rem 0.35rem;font-size:0.65rem;}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Site<span>By</span>Yuna</a>
-  <ul class="nav-links">
-    <li><a href="#demos">Examples</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#membership">Membership</a></li>
-    <li><a href="#order" class="nav-cta">Get Started</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#demos" data-i18n="nav_examples">Examples</a></li>
+      <li><a href="#how" data-i18n="nav_how">How it works</a></li>
+      <li><a href="#builder" class="nav-cta" data-i18n="nav_cta">✦ Try It Free</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('zh')">中文</button>
+      <button class="lang-btn" onclick="setLang('vi')">VI</button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">Local Business Websites</div>
-    <h1>Your business<br>deserves a<br><em>beautiful</em> website.</h1>
-    <p class="hero-sub">We build stunning, professional websites for local businesses — fast. Share your info, choose your style, and go live within days.</p>
+    <div class="hero-tag" data-i18n="hero_tag">Local Business Websites</div>
+    <h1 data-i18n="hero_h1">Preview your<br>website <em>before</em><br>you pay.</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Enter your business info, see your custom website generated live — then decide if you want it. No payment required to preview.</p>
     <div class="hero-btns">
-      <a href="#demos" class="btn-primary">See Examples</a>
-      <a href="#order" class="btn-outline">Get Started →</a>
+      <a href="#builder" class="btn-primary" data-i18n="hero_btn1">✦ Preview My Website Free</a>
+      <a href="#demos" class="btn-outline" data-i18n="hero_btn2">See Examples →</a>
     </div>
     <div class="hero-stats">
-      <div>
-        <div class="stat-num">3 days</div>
-        <div class="stat-label">Average delivery</div>
-      </div>
-      <div>
-        <div class="stat-num">$599+</div>
-        <div class="stat-label">Starting price</div>
-      </div>
-      <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Satisfaction</div>
-      </div>
+      <div><div class="stat-num" data-i18n="stat1_num">3 days</div><div class="stat-label" data-i18n="stat1_label">Average delivery</div></div>
+      <div><div class="stat-num">$599+</div><div class="stat-label" data-i18n="stat2_label">Starting price</div></div>
+      <div><div class="stat-num" data-i18n="stat3_num">Free</div><div class="stat-label" data-i18n="stat3_label">To preview</div></div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- HOW -->
 <section class="how" id="how">
-  <div class="section-tag">How it works</div>
-  <h2>Simple as <em>1 — 2 — 3</em></h2>
-  <p class="section-sub">No tech knowledge needed. We handle everything from design to going live.</p>
+  <div class="section-tag" data-i18n="how_tag">How it works</div>
+  <h2 data-i18n="how_h2">Simple as <em>1 — 2 — 3</em></h2>
   <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Fill out the form</h3>
-      <p>Tell us your business name, address, phone, and services. Takes less than 5 minutes.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>We build your site</h3>
-      <p>We create a beautiful, professional website tailored to your business. Ready within 3 days.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>Go live</h3>
-      <p>Your website is published and connected to your domain. Customers can find you online.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h3>Keep growing</h3>
-      <p>Join our membership for ongoing updates, Google review syncs, and priority support.</p>
-    </div>
+    <div class="step"><div class="step-num">01</div><h3 data-i18n="step1_title">Enter your info</h3><p data-i18n="step1_desc">Tell us your business name, address, and services. Takes less than 3 minutes.</p></div>
+    <div class="step"><div class="step-num">02</div><h3 data-i18n="step2_title">Preview instantly</h3><p data-i18n="step2_desc">See your real website generated live — completely free, before paying anything.</p></div>
+    <div class="step"><div class="step-num">03</div><h3 data-i18n="step3_title">Love it? Go live.</h3><p data-i18n="step3_desc">Pay only if you love it. Your site goes live within 3 business days.</p></div>
   </div>
 </section>
 
 <!-- DEMOS -->
 <section id="demos">
-  <div class="section-tag">Portfolio</div>
-  <h2>See what we <em>create</em></h2>
-  <p class="section-sub">Browse real examples by industry. Click to preview a live demo site.</p>
+  <div class="section-tag" data-i18n="demos_tag">Portfolio</div>
+  <h2 data-i18n="demos_h2">See what we <em>create</em></h2>
+  <p class="section-sub" data-i18n="demos_sub">Click any example to preview a live demo site.</p>
   <div class="demos-grid">
     <a href="https://luckeeyuna.github.io/spa-websites/sites/bee-spa/" target="_blank" class="demo-card">
-      <div class="demo-preview spa">
-        <span>Bee SPA</span>
-        <div class="live-badge">Live Demo</div>
-      </div>
-      <div class="demo-info">
-        <div>
-          <div class="demo-label">Bee SPA — Long Beach</div>
-          <div class="demo-type">Massage & Spa</div>
-        </div>
-        <div class="demo-arrow">→</div>
-      </div>
+      <div class="demo-preview spa"><span>Bee SPA</span><div class="live-badge" data-i18n="live_badge">Live Demo</div></div>
+      <div class="demo-info"><div><div class="demo-label">Bee SPA — Long Beach</div><div class="demo-type" data-i18n="type_spa">Massage & Spa</div></div><div class="demo-arrow">→</div></div>
     </a>
     <a href="sites/Nail/index.html" target="_blank" class="demo-card">
-      <div class="demo-preview nail">
-        <span>Luxe Nails</span>
-        <div class="live-badge">Live Demo</div>
-      </div>
-      <div class="demo-info">
-        <div>
-          <div class="demo-label">Luxe Nails — Cerritos</div>
-          <div class="demo-type">Beauty & Nails</div>
-        </div>
-        <div class="demo-arrow">→</div>
-      </div>
+      <div class="demo-preview nail"><span>Luxe Nails</span><div class="live-badge" data-i18n="live_badge">Live Demo</div></div>
+      <div class="demo-info"><div><div class="demo-label">Luxe Nails — Cerritos</div><div class="demo-type" data-i18n="type_nail">Beauty & Nails</div></div><div class="demo-arrow">→</div></div>
     </a>
     <a href="sites/Hair/index.html" target="_blank" class="demo-card">
-      <div class="demo-preview hair">
-        <span>Studio Hair Co.</span>
-        <div class="live-badge">Live Demo</div>
-      </div>
-      <div class="demo-info">
-        <div>
-          <div class="demo-label">Studio Hair Co. — Long Beach</div>
-          <div class="demo-type">Hair & Beauty</div>
-        </div>
-        <div class="demo-arrow">→</div>
-      </div>
+      <div class="demo-preview hair"><span>Studio Hair Co.</span><div class="live-badge" data-i18n="live_badge">Live Demo</div></div>
+      <div class="demo-info"><div><div class="demo-label">Studio Hair Co. — Long Beach</div><div class="demo-type" data-i18n="type_hair">Hair & Beauty</div></div><div class="demo-arrow">→</div></div>
     </a>
     <a href="sites/Restaurant/index.html" target="_blank" class="demo-card">
-      <div class="demo-preview restaurant">
-        <span>The Olive Table</span>
-        <div class="live-badge">Live Demo</div>
-      </div>
-      <div class="demo-info">
-        <div>
-          <div class="demo-label">The Olive Table — Long Beach</div>
-          <div class="demo-type">Food & Dining</div>
-        </div>
-        <div class="demo-arrow">→</div>
-      </div>
+      <div class="demo-preview restaurant"><span>The Olive Table</span><div class="live-badge" data-i18n="live_badge">Live Demo</div></div>
+      <div class="demo-info"><div><div class="demo-label">The Olive Table — Long Beach</div><div class="demo-type" data-i18n="type_rest">Food & Dining</div></div><div class="demo-arrow">→</div></div>
     </a>
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="section-tag">Pricing</div>
-  <h2>Transparent, <em>simple</em> pricing</h2>
-  <p class="section-sub">One-time payment. No hidden fees. Your site is yours to keep.</p>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <div class="price-name">Basic</div>
-      <div class="price-amount">$599</div>
-      <div class="price-sub">One-time payment</div>
-      <ul class="price-features">
-        <li><span class="check">✓</span> Professional website</li>
-        <li><span class="check">✓</span> Business info & services</li>
-        <li><span class="check">✓</span> Google reviews section</li>
-        <li><span class="check">✓</span> Mobile responsive</li>
-        <li><span class="check">✓</span> GitHub Pages hosting</li>
-      </ul>
-      <a href="#order" class="btn-outline" style="width:100%; text-align:center;">Get Basic</a>
+<!-- BUILDER -->
+<section id="builder">
+  <div class="section-tag" data-i18n="builder_tag">Try It Free</div>
+  <h2 data-i18n="builder_h2">Preview your <em>website</em></h2>
+  <p class="section-sub" data-i18n="builder_sub">Fill in your business info and see your website generated instantly. No payment needed to preview.</p>
+
+  <div class="step-indicator">
+    <div class="step-dot-wrap"><div class="step-dot active" id="dot1">1</div><div class="step-label" data-i18n="ind_info">Your Info</div></div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-dot-wrap"><div class="step-dot" id="dot2">2</div><div class="step-label" data-i18n="ind_style">Style</div></div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-dot-wrap"><div class="step-dot" id="dot3">3</div><div class="step-label" data-i18n="ind_preview">Preview</div></div>
+    <div class="step-line" id="line3"></div>
+    <div class="step-dot-wrap"><div class="step-dot" id="dot4">4</div><div class="step-label" data-i18n="ind_get">Get It</div></div>
+  </div>
+
+  <!-- Panel 1 -->
+  <div class="builder-panel active" id="panel1">
+    <div class="form-grid">
+      <div class="form-group"><label data-i18n="f_bizname">Business Name *</label><input type="text" id="bizName" data-i18n-ph="ph_bizname" placeholder="e.g. Bee SPA"></div>
+      <div class="form-group">
+        <label data-i18n="f_industry">Industry *</label>
+        <select id="industry">
+          <option value="" data-i18n="f_select">Select your industry...</option>
+          <option data-i18n="ind_spa">Spa / Massage</option>
+          <option data-i18n="ind_nail">Nail Salon</option>
+          <option data-i18n="ind_hair">Hair Salon</option>
+          <option data-i18n="ind_rest">Restaurant / Cafe</option>
+          <option data-i18n="ind_auto">Auto Shop</option>
+          <option data-i18n="ind_other">Other</option>
+        </select>
+      </div>
+      <div class="form-group full"><label data-i18n="f_address">Business Address *</label><input type="text" id="address" data-i18n-ph="ph_address" placeholder="123 Main St, Long Beach, CA 90807"></div>
+      <div class="form-group"><label data-i18n="f_phone">Phone Number *</label><input type="tel" id="phone" placeholder="(562) 000-0000"></div>
+      <div class="form-group"><label data-i18n="f_hours">Business Hours</label><input type="text" id="hours" data-i18n-ph="ph_hours" placeholder="Mon–Sat 10am–8pm, Sun 11am–6pm"></div>
+      <div class="form-group full"><label data-i18n="f_services">Services & Prices (one per line)</label><textarea id="services" data-i18n-ph="ph_services" placeholder="Swedish Massage 60min - $75&#10;Deep Tissue 60min - $85"></textarea></div>
+      <div class="form-group full"><label data-i18n="f_email">Your Email *</label><input type="email" id="email" placeholder="you@example.com"></div>
     </div>
-    <div class="price-card featured">
-      <div class="popular-tag">Most Popular</div>
-      <div class="price-name">Standard</div>
-      <div class="price-amount">$799</div>
-      <div class="price-sub">One-time payment</div>
-      <ul class="price-features">
-        <li><span class="check">✓</span> Everything in Basic</li>
-        <li><span class="check">✓</span> Custom domain connection</li>
-        <li><span class="check">✓</span> Logo design included</li>
-        <li><span class="check">✓</span> 1 revision round</li>
-        <li><span class="check">✓</span> 2 weeks support</li>
-      </ul>
-      <a href="#order" class="btn-primary" style="width:100%; text-align:center;">Get Standard</a>
+    <div class="form-nav">
+      <div></div>
+      <button class="btn-next" onclick="goToStep2()" data-i18n="btn_style">Choose Your Style →</button>
     </div>
-    <div class="price-card">
-      <div class="price-name">Premium</div>
-      <div class="price-amount">$999</div>
-      <div class="price-sub">One-time payment</div>
-      <ul class="price-features">
-        <li><span class="check">✓</span> Everything in Standard</li>
-        <li><span class="check">✓</span> Auto Google review sync</li>
-        <li><span class="check">✓</span> Booking / contact form</li>
-        <li><span class="check">✓</span> 2 revision rounds</li>
-        <li><span class="check">✓</span> 1 month support</li>
-      </ul>
-      <a href="#order" class="btn-outline" style="width:100%; text-align:center;">Get Premium</a>
+  </div>
+
+  <!-- Panel 2 -->
+  <div class="builder-panel" id="panel2">
+    <div style="margin-bottom:2rem;">
+      <div style="font-size:0.9rem;color:rgba(255,255,255,0.65);margin-bottom:1.5rem;" data-i18n="style_prompt">Choose the vibe for your website:</div>
+      <div class="theme-picker">
+        <div class="theme-opt selected" onclick="selectTheme(this,'dark')"><div class="theme-swatch" style="background:linear-gradient(135deg,#1a1a2e,#c9a84c);"></div><div class="theme-name" data-i18n="theme_dark">Elegant Dark</div></div>
+        <div class="theme-opt" onclick="selectTheme(this,'rose')"><div class="theme-swatch" style="background:linear-gradient(135deg,#2b1f1a,#c4856a);"></div><div class="theme-name" data-i18n="theme_rose">Soft Rose</div></div>
+        <div class="theme-opt" onclick="selectTheme(this,'forest')"><div class="theme-swatch" style="background:linear-gradient(135deg,#1c2b1c,#6b8c65);"></div><div class="theme-name" data-i18n="theme_forest">Fresh Forest</div></div>
+        <div class="theme-opt" onclick="selectTheme(this,'terra')"><div class="theme-swatch" style="background:linear-gradient(135deg,#2c2016,#c06b3a);"></div><div class="theme-name" data-i18n="theme_terra">Warm Earth</div></div>
+      </div>
+    </div>
+    <div class="form-nav">
+      <button class="btn-back" onclick="goToStep(1)" data-i18n="btn_back">← Back</button>
+      <button class="btn-next" onclick="generateSite()" data-i18n="btn_generate">Generate My Website ✦</button>
+    </div>
+  </div>
+
+  <!-- Panel 3: Generating -->
+  <div class="builder-panel" id="panel3">
+    <div class="generating-screen">
+      <div class="gen-spinner"></div>
+      <div class="gen-title" data-i18n="gen_title">Building your website...</div>
+      <div class="gen-steps-list">
+        <div class="gen-step-item" id="gs1"><div class="gen-check">✓</div><span data-i18n="gs1">Setting up your business info</span></div>
+        <div class="gen-step-item" id="gs2"><div class="gen-check">✓</div><span data-i18n="gs2">Designing your layout</span></div>
+        <div class="gen-step-item" id="gs3"><div class="gen-check">✓</div><span data-i18n="gs3">Adding your services & prices</span></div>
+        <div class="gen-step-item" id="gs4"><div class="gen-check">✓</div><span data-i18n="gs4">Applying your style</span></div>
+        <div class="gen-step-item" id="gs5"><div class="gen-check">✓</div><span data-i18n="gs5">Final touches...</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 4: Preview + Payment -->
+  <div class="builder-panel" id="panel4">
+    <div class="preview-header">
+      <div><h3 id="previewTitle">Your Website Preview</h3><p data-i18n="preview_sub">This is exactly what your website will look like. Love it? Get it below.</p></div>
+      <button class="btn-back" onclick="goToStep(1)" data-i18n="btn_edit">← Edit Info</button>
+    </div>
+    <div class="preview-browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+        <div class="browser-url" id="previewUrl">yourwebsite.com</div>
+      </div>
+      <iframe id="previewFrame" class="preview-iframe"></iframe>
+    </div>
+
+    <div class="payment-section" id="paymentSection">
+      <h3 data-i18n="pay_h3">Love it? <em style="font-style:italic;color:var(--gold);">Get it.</em></h3>
+      <p data-i18n="pay_sub">Choose your package. Pay only after you submit — we'll send you payment details.</p>
+
+      <div class="pricing-grid">
+        <div class="price-card selected" onclick="selectPkg(this,599,'Basic')">
+          <div class="price-name" data-i18n="pkg_basic">Basic</div>
+          <div class="price-amount">$599</div>
+          <div class="price-sub" data-i18n="onetime">One-time payment</div>
+          <ul class="price-features">
+            <li><span class="check">✓</span><span data-i18n="f1">Custom website</span></li>
+            <li><span class="check">✓</span><span data-i18n="f2">Business info & services</span></li>
+            <li><span class="check">✓</span><span data-i18n="f3">Google reviews section</span></li>
+            <li><span class="check">✓</span><span data-i18n="f4">Mobile responsive</span></li>
+            <li><span class="check">✓</span><span data-i18n="f5">Hosted & live online</span></li>
+          </ul>
+        </div>
+        <div class="price-card" onclick="selectPkg(this,799,'Standard')" style="border-color:var(--gold);">
+          <div class="popular-tag" data-i18n="popular">Most Popular</div>
+          <div class="price-name" data-i18n="pkg_std">Standard</div>
+          <div class="price-amount">$799</div>
+          <div class="price-sub" data-i18n="onetime">One-time payment</div>
+          <ul class="price-features">
+            <li><span class="check">✓</span><span data-i18n="f6">Everything in Basic</span></li>
+            <li><span class="check">✓</span><span data-i18n="f7">Custom domain connection</span></li>
+            <li><span class="check">✓</span><span data-i18n="f8">Logo design included</span></li>
+            <li><span class="check">✓</span><span data-i18n="f9">1 revision round</span></li>
+            <li><span class="check">✓</span><span data-i18n="f10">2 weeks support</span></li>
+          </ul>
+        </div>
+        <div class="price-card" onclick="selectPkg(this,999,'Premium')">
+          <div class="price-name" data-i18n="pkg_prem">Premium</div>
+          <div class="price-amount">$999</div>
+          <div class="price-sub" data-i18n="onetime">One-time payment</div>
+          <ul class="price-features">
+            <li><span class="check">✓</span><span data-i18n="f11">Everything in Standard</span></li>
+            <li><span class="check">✓</span><span data-i18n="f12">Auto Google review sync</span></li>
+            <li><span class="check">✓</span><span data-i18n="f13">Booking / contact form</span></li>
+            <li><span class="check">✓</span><span data-i18n="f14">2 revision rounds</span></li>
+            <li><span class="check">✓</span><span data-i18n="f15">1 month support</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <label class="mem-toggle">
+        <input type="checkbox" id="memCheck" onchange="updateTotal()">
+        <div>
+          <div class="mem-name" data-i18n="mem_name">+ Monthly Maintenance — $59/month</div>
+          <div class="mem-sub" data-i18n="mem_sub">Up to 3 updates/month · Google review refresh · Priority support</div>
+        </div>
+      </label>
+
+      <div class="pay-methods">
+        <div class="pay-card"><div class="pay-icon pay-zelle">Zelle</div><div><div class="pay-name">Zelle</div><div class="pay-sub" data-i18n="pay_zelle_sub">We'll send details after you submit</div></div></div>
+        <div class="pay-card"><div class="pay-icon pay-paypal">PP</div><div><div class="pay-name">PayPal</div><div class="pay-sub" data-i18n="pay_pp_sub">We'll send a link after you submit</div></div></div>
+      </div>
+
+      <div class="order-total">
+        <div class="total-row"><span data-i18n="total_site">Website</span> (<span id="pkgName">Basic</span>)<span id="pkgPrice">$599</span></div>
+        <div class="total-row" id="memRow" style="display:none;"><span data-i18n="total_mem">Monthly Maintenance</span><span>$59/mo</span></div>
+        <div class="total-main"><span data-i18n="total_label">Total Today</span><span id="grandTotal">$599</span></div>
+      </div>
+
+      <button class="submit-btn" onclick="submitOrder()" data-i18n="submit_btn">Submit My Order — We'll Send Payment Info →</button>
+    </div>
+
+    <div class="success-screen" id="successScreen" style="display:none;">
+      <div style="font-size:3.5rem;margin-bottom:1.5rem;">🎉</div>
+      <h3 data-i18n="success_h3">Order received!</h3>
+      <p data-i18n="success_p">We'll reach out shortly with payment details. Your website will be live within 3 business days.</p>
     </div>
   </div>
 </section>
 
-<!-- MEMBERSHIP -->
-<section id="membership" style="background:var(--white);">
-  <div class="section-tag">Membership</div>
-  <h2>Keep your site <em>fresh</em></h2>
-  <div class="membership-box">
-    <div>
-      <h3>Monthly <em>maintenance</em><br>taken care of.</h3>
-      <p>Hours change, prices update, new photos come in. We handle all of it — so you can focus on running your business.</p>
-      <ul class="mem-features">
-        <li><div class="mem-icon"></div>Up to 3 content updates per month</li>
-        <li><div class="mem-icon"></div>Photo & text changes on request</li>
-        <li><div class="mem-icon"></div>Google review refresh monthly</li>
-        <li><div class="mem-icon"></div>Priority response within 24 hours</li>
-      </ul>
-    </div>
-    <div>
-      <div class="mem-price">
-        <div class="mem-amount">$59</div>
-        <div class="mem-period">per month · cancel anytime</div>
-        <a href="#order" class="btn-primary" style="width:100%; text-align:center; display:block;">Add Membership</a>
-        <p style="font-size:0.75rem; color:#666; margin-top:0.75rem;">Add when submitting your order</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ORDER FORM -->
-<section id="order" style="background:var(--gray-light); border-top:1px solid var(--border);">
-  <div class="section-tag">Order</div>
-  <h2>Let's build your <em>website</em></h2>
-  <p class="section-sub">Fill in your business details and we'll get started right away.</p>
-  <div class="form-wrap">
-    <div class="form-info">
-      <h3>What happens next?</h3>
-      <p>After submitting, you'll receive a confirmation message. Once payment is sent via Zelle or PayPal, we'll start building your website and deliver within 3 business days.</p>
-      <p>Have questions? Text us directly and we'll reply quickly.</p>
-      <div class="payment-box">
-        <h4>Payment Methods</h4>
-        <div class="payment-method">
-          <div class="pay-icon pay-zelle">Zelle</div>
-          <div>
-            <div style="font-weight:500;">Zelle</div>
-            <div class="pay-detail">We'll send you the email address after submission</div>
-          </div>
-        </div>
-        <div class="payment-method">
-          <div class="pay-icon pay-paypal">PP</div>
-          <div>
-            <div style="font-weight:500;">PayPal</div>
-            <div class="pay-detail">We'll send you the PayPal link after submission</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <form class="order-form" id="orderForm">
-        <div class="form-group">
-          <label>Select Package</label>
-          <div class="package-select">
-            <div class="pkg-opt selected" data-val="Basic" onclick="selectPkg(this)">
-              <span class="pkg-price">$599</span>
-              <span class="pkg-name">Basic</span>
-            </div>
-            <div class="pkg-opt" data-val="Standard" onclick="selectPkg(this)">
-              <span class="pkg-price">$799</span>
-              <span class="pkg-name">Standard</span>
-            </div>
-            <div class="pkg-opt" data-val="Premium" onclick="selectPkg(this)">
-              <span class="pkg-price">$999</span>
-              <span class="pkg-name">Premium</span>
-            </div>
-          </div>
-          <input type="hidden" id="selectedPackage" value="Basic">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Business Name *</label>
-            <input type="text" id="bizName" placeholder="e.g. Bee SPA" required>
-          </div>
-          <div class="form-group">
-            <label>Industry *</label>
-            <select id="industry" required>
-              <option value="">Select...</option>
-              <option>Spa / Massage</option>
-              <option>Nail Salon</option>
-              <option>Hair Salon</option>
-              <option>Restaurant / Cafe</option>
-              <option>Auto Shop</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Business Address *</label>
-          <input type="text" id="address" placeholder="123 Main St, Long Beach, CA 90807" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Phone Number *</label>
-            <input type="tel" id="phone" placeholder="(562) 000-0000" required>
-          </div>
-          <div class="form-group">
-            <label>Your Email *</label>
-            <input type="email" id="email" placeholder="you@example.com" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Google Reviews URL (optional)</label>
-          <input type="url" id="googleUrl" placeholder="https://maps.google.com/...">
-        </div>
-
-        <div class="form-group">
-          <label>Services & Prices (list them)</label>
-          <textarea id="services" placeholder="e.g.&#10;Swedish Massage 60min - $75&#10;Deep Tissue 60min - $85&#10;Hot Stone 75min - $105"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
-            <input type="checkbox" id="membership" style="width:auto;">
-            Add Monthly Membership — $59/month
-          </label>
-        </div>
-
-        <button type="submit" class="submit-btn">Submit My Order →</button>
-        <p class="form-note">After submitting, we'll contact you with payment instructions via text or email.</p>
-      </form>
-
-      <div class="success-msg" id="successMsg">
-        <div style="font-size:2rem; margin-bottom:0.75rem;">🎉</div>
-        <h3>Order received!</h3>
-        <p>Thank you! We'll reach out shortly with payment details.<br>Your website will be ready within 3 business days.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Site<span>By</span>Yuna</div>
   <p>© 2025 SiteByYuna. All rights reserved.</p>
-  <p style="font-size:0.8rem; color:#555;">Long Beach, CA</p>
+  <p>Long Beach, CA</p>
 </footer>
 
 <script>
-  function selectPkg(el) {
-    document.querySelectorAll('.pkg-opt').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    document.getElementById('selectedPackage').value = el.dataset.val;
+/* ===== TRANSLATIONS ===== */
+const t = {
+  en: {
+    nav_examples:'Examples', nav_how:'How it works', nav_cta:'✦ Try It Free',
+    hero_tag:'Local Business Websites',
+    hero_h1:'Preview your<br>website <em>before</em><br>you pay.',
+    hero_sub:'Enter your business info, see your custom website generated live — then decide if you want it. No payment required to preview.',
+    hero_btn1:'✦ Preview My Website Free', hero_btn2:'See Examples →',
+    stat1_num:'3 days', stat1_label:'Average delivery', stat2_label:'Starting price', stat3_num:'Free', stat3_label:'To preview',
+    how_tag:'How it works', how_h2:'Simple as <em>1 — 2 — 3</em>',
+    step1_title:'Enter your info', step1_desc:'Tell us your business name, address, and services. Takes less than 3 minutes.',
+    step2_title:'Preview instantly', step2_desc:'See your real website generated live — completely free, before paying anything.',
+    step3_title:'Love it? Go live.', step3_desc:'Pay only if you love it. Your site goes live within 3 business days.',
+    demos_tag:'Portfolio', demos_h2:'See what we <em>create</em>', demos_sub:'Click any example to preview a live demo site.',
+    live_badge:'Live Demo', type_spa:'Massage & Spa', type_nail:'Beauty & Nails', type_hair:'Hair & Beauty', type_rest:'Food & Dining',
+    builder_tag:'Try It Free', builder_h2:'Preview your <em>website</em>', builder_sub:'Fill in your business info and see your website generated instantly. No payment needed to preview.',
+    ind_info:'Your Info', ind_style:'Style', ind_preview:'Preview', ind_get:'Get It',
+    f_bizname:'Business Name *', ph_bizname:'e.g. Bee SPA', f_industry:'Industry *', f_select:'Select your industry...',
+    ind_spa:'Spa / Massage', ind_nail:'Nail Salon', ind_hair:'Hair Salon', ind_rest:'Restaurant / Cafe', ind_auto:'Auto Shop', ind_other:'Other',
+    f_address:'Business Address *', ph_address:'123 Main St, Long Beach, CA 90807',
+    f_phone:'Phone Number *', f_hours:'Business Hours', ph_hours:'Mon–Sat 10am–8pm, Sun 11am–6pm',
+    f_services:'Services & Prices (one per line)', ph_services:'Swedish Massage 60min - $75\nDeep Tissue 60min - $85',
+    f_email:'Your Email *',
+    btn_style:'Choose Your Style →', btn_back:'← Back', btn_generate:'Generate My Website ✦',
+    style_prompt:'Choose the vibe for your website:',
+    theme_dark:'Elegant Dark', theme_rose:'Soft Rose', theme_forest:'Fresh Forest', theme_terra:'Warm Earth',
+    gen_title:'Building your website...',
+    gs1:'Setting up your business info', gs2:'Designing your layout', gs3:'Adding your services & prices', gs4:'Applying your style', gs5:'Final touches...',
+    preview_sub:'This is exactly what your website will look like. Love it? Get it below.', btn_edit:'← Edit Info',
+    pay_h3:'Love it? <em style="font-style:italic;color:var(--gold);">Get it.</em>',
+    pay_sub:"Choose your package. Pay only after you submit — we'll send you payment details.",
+    pkg_basic:'Basic', pkg_std:'Standard', pkg_prem:'Premium', onetime:'One-time payment', popular:'Most Popular',
+    f1:'Custom website', f2:'Business info & services', f3:'Google reviews section', f4:'Mobile responsive', f5:'Hosted & live online',
+    f6:'Everything in Basic', f7:'Custom domain connection', f8:'Logo design included', f9:'1 revision round', f10:'2 weeks support',
+    f11:'Everything in Standard', f12:'Auto Google review sync', f13:'Booking / contact form', f14:'2 revision rounds', f15:'1 month support',
+    mem_name:'+ Monthly Maintenance — $59/month', mem_sub:'Up to 3 updates/month · Google review refresh · Priority support',
+    pay_zelle_sub:"We'll send details after you submit", pay_pp_sub:"We'll send a link after you submit",
+    total_site:'Website', total_mem:'Monthly Maintenance', total_label:'Total Today',
+    submit_btn:"Submit My Order — We'll Send Payment Info →",
+    success_h3:'Order received!', success_p:"We'll reach out shortly with payment details. Your website will be live within 3 business days.",
+    alert_fill:'Please fill in Business Name, Industry, Phone Number, and Address to continue.'
+  },
+  ko: {
+    nav_examples:'예시 보기', nav_how:'이용 방법', nav_cta:'✦ 무료로 미리보기',
+    hero_tag:'소상공인 전문 웹사이트',
+    hero_h1:'결제 <em>전에</em><br>먼저 미리보세요.',
+    hero_sub:'업체 정보를 입력하면 실시간으로 웹사이트를 생성해 드립니다. 마음에 드실 때만 결제하세요.',
+    hero_btn1:'✦ 내 웹사이트 무료 미리보기', hero_btn2:'예시 보기 →',
+    stat1_num:'3일', stat1_label:'평균 완성 기간', stat2_label:'시작 가격', stat3_num:'무료', stat3_label:'미리보기',
+    how_tag:'이용 방법', how_h2:'딱 <em>3단계</em>면 끝!',
+    step1_title:'정보 입력', step1_desc:'업체명, 주소, 서비스를 입력하세요. 3분도 안 걸려요.',
+    step2_title:'즉시 미리보기', step2_desc:'입력한 정보로 실제 웹사이트가 바로 생성됩니다. 완전 무료예요.',
+    step3_title:'마음에 들면 결제', step3_desc:'마음에 드실 때만 결제하세요. 3일 안에 라이브로 올려드립니다.',
+    demos_tag:'포트폴리오', demos_h2:'이런 웹사이트를 <em>만들어요</em>', demos_sub:'클릭해서 실제 데모 사이트를 확인해보세요.',
+    live_badge:'라이브 데모', type_spa:'마사지 & 스파', type_nail:'네일 & 뷰티', type_hair:'헤어 & 미용', type_rest:'식당 & 카페',
+    builder_tag:'무료 미리보기', builder_h2:'내 웹사이트 <em>미리보기</em>', builder_sub:'업체 정보를 입력하면 웹사이트가 즉시 생성됩니다. 결제 없이 미리볼 수 있어요.',
+    ind_info:'업체 정보', ind_style:'스타일', ind_preview:'미리보기', ind_get:'결제',
+    f_bizname:'업체명 *', ph_bizname:'예: Bee SPA', f_industry:'업종 *', f_select:'업종을 선택하세요...',
+    ind_spa:'스파 / 마사지', ind_nail:'네일샵', ind_hair:'헤어샵', ind_rest:'식당 / 카페', ind_auto:'자동차 수리', ind_other:'기타',
+    f_address:'업체 주소 *', ph_address:'123 Main St, Long Beach, CA 90807',
+    f_phone:'전화번호 *', f_hours:'영업시간', ph_hours:'월~토 오전 10시~오후 8시, 일 오전 11시~오후 6시',
+    f_services:'서비스 & 가격 (한 줄씩 입력)', ph_services:'스웨디시 마사지 60분 - $75\n딥티슈 60분 - $85',
+    f_email:'이메일 주소 *',
+    btn_style:'스타일 선택 →', btn_back:'← 뒤로', btn_generate:'웹사이트 생성하기 ✦',
+    style_prompt:'웹사이트 분위기를 선택해주세요:',
+    theme_dark:'엘레강트 다크', theme_rose:'소프트 로즈', theme_forest:'프레시 포레스트', theme_terra:'웜 어스',
+    gen_title:'웹사이트를 만들고 있어요...',
+    gs1:'업체 정보 설정 중', gs2:'레이아웃 디자인 중', gs3:'서비스 & 가격 추가 중', gs4:'스타일 적용 중', gs5:'마무리 작업 중...',
+    preview_sub:'실제로 완성될 웹사이트 모습입니다. 마음에 드시면 아래에서 구매하세요.', btn_edit:'← 정보 수정',
+    pay_h3:'마음에 드세요? <em style="font-style:italic;color:var(--gold);">구매하세요.</em>',
+    pay_sub:'패키지를 선택하세요. 제출 후 결제 정보를 보내드립니다.',
+    pkg_basic:'베이직', pkg_std:'스탠다드', pkg_prem:'프리미엄', onetime:'일회 결제', popular:'가장 인기',
+    f1:'맞춤 웹사이트', f2:'업체 정보 & 서비스', f3:'구글 리뷰 섹션', f4:'모바일 최적화', f5:'호스팅 & 라이브',
+    f6:'베이직 포함 전체', f7:'커스텀 도메인 연결', f8:'로고 디자인 포함', f9:'수정 1회', f10:'2주 지원',
+    f11:'스탠다드 포함 전체', f12:'구글 리뷰 자동 업데이트', f13:'예약 / 문의 폼', f14:'수정 2회', f15:'1개월 지원',
+    mem_name:'+ 월간 유지보수 — 월 $59', mem_sub:'월 최대 3회 수정 · 구글 리뷰 업데이트 · 우선 지원',
+    pay_zelle_sub:'제출 후 결제 정보를 문자로 보내드려요', pay_pp_sub:'제출 후 페이팔 링크를 보내드려요',
+    total_site:'웹사이트', total_mem:'월간 유지보수', total_label:'오늘 결제 금액',
+    submit_btn:'주문 제출 — 결제 정보 받기 →',
+    success_h3:'주문 완료!', success_p:'곧 결제 정보를 문자 또는 이메일로 보내드릴게요. 3일 안에 웹사이트가 라이브됩니다.',
+    alert_fill:'업체명, 업종, 전화번호, 주소를 모두 입력해 주세요.'
+  },
+  es: {
+    nav_examples:'Ejemplos', nav_how:'Cómo funciona', nav_cta:'✦ Prueba Gratis',
+    hero_tag:'Sitios Web para Negocios Locales',
+    hero_h1:'Previsualiza tu<br>sitio web <em>antes</em><br>de pagar.',
+    hero_sub:'Ingresa tu información y ve tu sitio web generado en vivo — luego decide si lo quieres. Sin pago para previsualizar.',
+    hero_btn1:'✦ Ver Mi Sitio Gratis', hero_btn2:'Ver Ejemplos →',
+    stat1_num:'3 días', stat1_label:'Entrega promedio', stat2_label:'Precio inicial', stat3_num:'Gratis', stat3_label:'Para previsualizar',
+    how_tag:'Cómo funciona', how_h2:'Simple como <em>1 — 2 — 3</em>',
+    step1_title:'Ingresa tu info', step1_desc:'Dinos tu nombre, dirección y servicios. Menos de 3 minutos.',
+    step2_title:'Previsualiza al instante', step2_desc:'Ve tu sitio generado en vivo — completamente gratis.',
+    step3_title:'¿Te gusta? ¡Publícalo!', step3_desc:'Paga solo si te gusta. Tu sitio estará en vivo en 3 días hábiles.',
+    demos_tag:'Portafolio', demos_h2:'Lo que <em>creamos</em>', demos_sub:'Haz clic para previsualizar un sitio de demostración.',
+    live_badge:'Demo En Vivo', type_spa:'Masajes & Spa', type_nail:'Belleza & Uñas', type_hair:'Cabello & Belleza', type_rest:'Comida & Restaurante',
+    builder_tag:'Prueba Gratis', builder_h2:'Previsualiza tu <em>sitio web</em>', builder_sub:'Ingresa tu información y ve tu sitio generado al instante. Sin pago para previsualizar.',
+    ind_info:'Tu Info', ind_style:'Estilo', ind_preview:'Vista Previa', ind_get:'Obtenerlo',
+    f_bizname:'Nombre del negocio *', ph_bizname:'ej. Bee SPA', f_industry:'Industria *', f_select:'Selecciona tu industria...',
+    ind_spa:'Spa / Masajes', ind_nail:'Salón de Uñas', ind_hair:'Salón de Belleza', ind_rest:'Restaurante / Café', ind_auto:'Taller de Autos', ind_other:'Otro',
+    f_address:'Dirección del negocio *', ph_address:'123 Main St, Long Beach, CA 90807',
+    f_phone:'Número de teléfono *', f_hours:'Horario de atención', ph_hours:'Lun–Sáb 10am–8pm, Dom 11am–6pm',
+    f_services:'Servicios & Precios (uno por línea)', ph_services:'Masaje Sueco 60min - $75\nTejido Profundo 60min - $85',
+    f_email:'Tu correo electrónico *',
+    btn_style:'Elegir Estilo →', btn_back:'← Atrás', btn_generate:'Generar Mi Sitio Web ✦',
+    style_prompt:'Elige el estilo para tu sitio web:',
+    theme_dark:'Elegante Oscuro', theme_rose:'Rosa Suave', theme_forest:'Bosque Fresco', theme_terra:'Tierra Cálida',
+    gen_title:'Construyendo tu sitio web...',
+    gs1:'Configurando tu información', gs2:'Diseñando tu layout', gs3:'Agregando servicios & precios', gs4:'Aplicando tu estilo', gs5:'Toques finales...',
+    preview_sub:'Así es exactamente como se verá tu sitio. ¿Te gusta? Adquiérelo abajo.', btn_edit:'← Editar Info',
+    pay_h3:'¿Te gusta? <em style="font-style:italic;color:var(--gold);">Adquiérelo.</em>',
+    pay_sub:'Elige tu paquete. Paga solo después de enviar — te enviaremos los detalles.',
+    pkg_basic:'Básico', pkg_std:'Estándar', pkg_prem:'Premium', onetime:'Pago único', popular:'Más Popular',
+    f1:'Sitio web personalizado', f2:'Info del negocio & servicios', f3:'Sección de reseñas Google', f4:'Diseño móvil', f5:'Hospedado & en vivo',
+    f6:'Todo en Básico', f7:'Conexión de dominio', f8:'Diseño de logo incluido', f9:'1 ronda de revisión', f10:'2 semanas de soporte',
+    f11:'Todo en Estándar', f12:'Sincronización automática de reseñas', f13:'Formulario de reserva', f14:'2 rondas de revisión', f15:'1 mes de soporte',
+    mem_name:'+ Mantenimiento Mensual — $59/mes', mem_sub:'Hasta 3 actualizaciones/mes · Actualización de reseñas · Soporte prioritario',
+    pay_zelle_sub:'Te enviaremos detalles después de enviar', pay_pp_sub:'Te enviaremos un enlace de PayPal',
+    total_site:'Sitio Web', total_mem:'Mantenimiento Mensual', total_label:'Total Hoy',
+    submit_btn:'Enviar Mi Orden — Recibirás Info de Pago →',
+    success_h3:'¡Orden recibida!', success_p:'Te contactaremos pronto con los detalles de pago. Tu sitio estará en vivo en 3 días hábiles.',
+    alert_fill:'Por favor completa Nombre, Industria, Teléfono y Dirección para continuar.'
+  },
+  zh: {
+    nav_examples:'案例展示', nav_how:'如何运作', nav_cta:'✦ 免费预览',
+    hero_tag:'本地商家专业网站',
+    hero_h1:'付款<em>前</em><br>先预览您的网站。',
+    hero_sub:'输入您的商家信息，立即生成专属网站预览——满意后再付款，预览完全免费。',
+    hero_btn1:'✦ 免费预览我的网站', hero_btn2:'查看案例 →',
+    stat1_num:'3天', stat1_label:'平均交付时间', stat2_label:'起始价格', stat3_num:'免费', stat3_label:'预览',
+    how_tag:'如何运作', how_h2:'简单 <em>三步</em> 搞定',
+    step1_title:'输入信息', step1_desc:'告诉我们您的商家名称、地址和服务项目，不到3分钟。',
+    step2_title:'即时预览', step2_desc:'实时生成您的真实网站预览，完全免费，无需付款。',
+    step3_title:'满意即付款', step3_desc:'只有满意才付款，3个工作日内上线。',
+    demos_tag:'作品展示', demos_h2:'我们的<em>作品</em>', demos_sub:'点击查看实时演示网站。',
+    live_badge:'实时演示', type_spa:'按摩 & 水疗', type_nail:'美甲 & 美容', type_hair:'美发 & 美容', type_rest:'餐厅 & 咖啡',
+    builder_tag:'免费预览', builder_h2:'预览您的<em>网站</em>', builder_sub:'输入商家信息，立即生成网站预览，无需付款。',
+    ind_info:'商家信息', ind_style:'风格', ind_preview:'预览', ind_get:'购买',
+    f_bizname:'商家名称 *', ph_bizname:'例：Bee SPA', f_industry:'行业 *', f_select:'请选择行业...',
+    ind_spa:'水疗 / 按摩', ind_nail:'美甲店', ind_hair:'美发店', ind_rest:'餐厅 / 咖啡厅', ind_auto:'汽车维修', ind_other:'其他',
+    f_address:'商家地址 *', ph_address:'123 Main St, Long Beach, CA 90807',
+    f_phone:'电话号码 *', f_hours:'营业时间', ph_hours:'周一至周六 上午10点-下午8点',
+    f_services:'服务项目 & 价格（每行一项）', ph_services:'瑞典式按摩 60分钟 - $75\n深层组织按摩 60分钟 - $85',
+    f_email:'您的邮箱 *',
+    btn_style:'选择风格 →', btn_back:'← 返回', btn_generate:'生成我的网站 ✦',
+    style_prompt:'选择您网站的风格：',
+    theme_dark:'优雅深色', theme_rose:'柔和玫瑰', theme_forest:'清新森林', theme_terra:'温暖大地',
+    gen_title:'正在生成您的网站...',
+    gs1:'设置商家信息', gs2:'设计页面布局', gs3:'添加服务与价格', gs4:'应用您的风格', gs5:'最后润色中...',
+    preview_sub:'这就是您网站的真实样貌，喜欢就在下方购买。', btn_edit:'← 修改信息',
+    pay_h3:'喜欢吗？<em style="font-style:italic;color:var(--gold);">立即获取。</em>',
+    pay_sub:'选择套餐，提交后我们将发送付款详情。',
+    pkg_basic:'基础版', pkg_std:'标准版', pkg_prem:'高级版', onetime:'一次性付款', popular:'最受欢迎',
+    f1:'定制网站', f2:'商家信息 & 服务', f3:'谷歌评价区块', f4:'手机端适配', f5:'托管 & 上线',
+    f6:'包含基础版全部', f7:'自定义域名连接', f8:'Logo设计包含', f9:'1次修改', f10:'2周支持',
+    f11:'包含标准版全部', f12:'谷歌评价自动同步', f13:'预约 / 联系表单', f14:'2次修改', f15:'1个月支持',
+    mem_name:'+ 月度维护服务 — $59/月', mem_sub:'每月最多3次更新 · 谷歌评价刷新 · 优先支持',
+    pay_zelle_sub:'提交后我们将发送Zelle付款信息', pay_pp_sub:'提交后我们将发送PayPal链接',
+    total_site:'网站', total_mem:'月度维护', total_label:'今日总计',
+    submit_btn:'提交订单 — 接收付款信息 →',
+    success_h3:'订单已收到！', success_p:'我们将很快通过短信或邮件发送付款详情，您的网站将在3个工作日内上线。',
+    alert_fill:'请填写商家名称、行业、电话号码和地址以继续。'
+  },
+  vi: {
+    nav_examples:'Xem Mẫu', nav_how:'Cách Hoạt Động', nav_cta:'✦ Xem Thử Miễn Phí',
+    hero_tag:'Website Cho Doanh Nghiệp Địa Phương',
+    hero_h1:'Xem trước website<br><em>trước khi</em><br>thanh toán.',
+    hero_sub:'Nhập thông tin doanh nghiệp, xem website được tạo ngay lập tức — sau đó quyết định. Xem thử hoàn toàn miễn phí.',
+    hero_btn1:'✦ Xem Thử Miễn Phí', hero_btn2:'Xem Mẫu →',
+    stat1_num:'3 ngày', stat1_label:'Thời gian giao hàng', stat2_label:'Giá khởi điểm', stat3_num:'Miễn phí', stat3_label:'Xem thử',
+    how_tag:'Cách Hoạt Động', how_h2:'Chỉ <em>3 bước</em> đơn giản',
+    step1_title:'Nhập thông tin', step1_desc:'Cho chúng tôi biết tên, địa chỉ và dịch vụ của bạn. Chưa đến 3 phút.',
+    step2_title:'Xem trước ngay', step2_desc:'Xem website thực tế được tạo ngay — hoàn toàn miễn phí.',
+    step3_title:'Thích thì thanh toán', step3_desc:'Chỉ thanh toán nếu bạn thích. Website sẽ online trong 3 ngày làm việc.',
+    demos_tag:'Danh Mục', demos_h2:'Những gì chúng tôi <em>tạo ra</em>', demos_sub:'Nhấp vào mẫu để xem trước website demo.',
+    live_badge:'Demo Thực Tế', type_spa:'Massage & Spa', type_nail:'Làm Đẹp & Móng', type_hair:'Tóc & Làm Đẹp', type_rest:'Ăn Uống & Nhà Hàng',
+    builder_tag:'Xem Thử Miễn Phí', builder_h2:'Xem trước <em>website của bạn</em>', builder_sub:'Nhập thông tin và xem website được tạo ngay. Không cần thanh toán để xem thử.',
+    ind_info:'Thông Tin', ind_style:'Phong Cách', ind_preview:'Xem Trước', ind_get:'Mua Ngay',
+    f_bizname:'Tên Doanh Nghiệp *', ph_bizname:'VD: Bee SPA', f_industry:'Ngành Nghề *', f_select:'Chọn ngành nghề...',
+    ind_spa:'Spa / Massage', ind_nail:'Tiệm Nail', ind_hair:'Tiệm Tóc', ind_rest:'Nhà Hàng / Cà Phê', ind_auto:'Gara Ô Tô', ind_other:'Khác',
+    f_address:'Địa Chỉ Doanh Nghiệp *', ph_address:'123 Main St, Long Beach, CA 90807',
+    f_phone:'Số Điện Thoại *', f_hours:'Giờ Mở Cửa', ph_hours:'T2–T7: 10am–8pm, CN: 11am–6pm',
+    f_services:'Dịch Vụ & Giá (mỗi dịch vụ một dòng)', ph_services:'Massage Thụy Điển 60 phút - $75\nMassage Sâu 60 phút - $85',
+    f_email:'Email Của Bạn *',
+    btn_style:'Chọn Phong Cách →', btn_back:'← Quay Lại', btn_generate:'Tạo Website Của Tôi ✦',
+    style_prompt:'Chọn phong cách cho website của bạn:',
+    theme_dark:'Sang Trọng Tối', theme_rose:'Hồng Nhẹ Nhàng', theme_forest:'Xanh Mướt', theme_terra:'Ấm Áp Đất',
+    gen_title:'Đang tạo website của bạn...',
+    gs1:'Thiết lập thông tin doanh nghiệp', gs2:'Thiết kế bố cục trang', gs3:'Thêm dịch vụ & giá cả', gs4:'Áp dụng phong cách', gs5:'Hoàn thiện cuối cùng...',
+    preview_sub:'Đây chính xác là giao diện website của bạn. Thích không? Mua ngay bên dưới.', btn_edit:'← Chỉnh Sửa',
+    pay_h3:'Thích không? <em style="font-style:italic;color:var(--gold);">Mua ngay.</em>',
+    pay_sub:'Chọn gói của bạn. Thanh toán sau khi gửi — chúng tôi sẽ gửi thông tin thanh toán.',
+    pkg_basic:'Cơ Bản', pkg_std:'Tiêu Chuẩn', pkg_prem:'Cao Cấp', onetime:'Thanh toán một lần', popular:'Phổ Biến Nhất',
+    f1:'Website tùy chỉnh', f2:'Thông tin & dịch vụ', f3:'Phần đánh giá Google', f4:'Tương thích điện thoại', f5:'Lưu trữ & online',
+    f6:'Tất cả trong Cơ Bản', f7:'Kết nối tên miền', f8:'Thiết kế logo', f9:'1 lần chỉnh sửa', f10:'Hỗ trợ 2 tuần',
+    f11:'Tất cả trong Tiêu Chuẩn', f12:'Đồng bộ đánh giá Google tự động', f13:'Form đặt lịch / liên hệ', f14:'2 lần chỉnh sửa', f15:'Hỗ trợ 1 tháng',
+    mem_name:'+ Bảo Trì Hàng Tháng — $59/tháng', mem_sub:'Tối đa 3 cập nhật/tháng · Làm mới đánh giá Google · Hỗ trợ ưu tiên',
+    pay_zelle_sub:'Chúng tôi sẽ gửi thông tin sau khi bạn gửi đơn', pay_pp_sub:'Chúng tôi sẽ gửi link PayPal',
+    total_site:'Website', total_mem:'Bảo Trì Hàng Tháng', total_label:'Tổng Hôm Nay',
+    submit_btn:'Gửi Đơn — Nhận Thông Tin Thanh Toán →',
+    success_h3:'Đã nhận đơn hàng!', success_p:'Chúng tôi sẽ liên hệ sớm với thông tin thanh toán. Website sẽ online trong 3 ngày làm việc.',
+    alert_fill:'Vui lòng điền Tên Doanh Nghiệp, Ngành Nghề, Số Điện Thoại và Địa Chỉ để tiếp tục.'
   }
+};
 
-  document.getElementById('orderForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+let currentLang = 'en';
+let currentStep = 1;
+let selectedTheme = 'dark';
+let selectedPrice = 599;
+let selectedPkgLabel = 'Basic';
 
-    const data = {
-      package: document.getElementById('selectedPackage').value,
-      bizName: document.getElementById('bizName').value,
-      industry: document.getElementById('industry').value,
-      address: document.getElementById('address').value,
-      phone: document.getElementById('phone').value,
-      email: document.getElementById('email').value,
-      googleUrl: document.getElementById('googleUrl').value,
-      services: document.getElementById('services').value,
-      membership: document.getElementById('membership').checked
-    };
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  document.documentElement.lang = lang;
+  applyTranslations();
+}
 
-    console.log('Order submitted:', data);
-
-    document.getElementById('orderForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
+function applyTranslations() {
+  const tr = t[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (tr[key] !== undefined) el.innerHTML = tr[key];
   });
-</script>
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    if (tr[key] !== undefined) el.placeholder = tr[key];
+  });
+  const sel = document.getElementById('industry');
+  if (sel) {
+    const keys = ['f_select','ind_spa','ind_nail','ind_hair','ind_rest','ind_auto','ind_other'];
+    sel.querySelectorAll('option').forEach((opt, i) => { if (tr[keys[i]]) opt.textContent = tr[keys[i]]; });
+  }
+}
 
+function goToStep(n) {
+  document.querySelectorAll('.builder-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel'+n).classList.add('active');
+  currentStep = n;
+  for (let i=1;i<=4;i++){
+    const dot=document.getElementById('dot'+i);
+    const line=document.getElementById('line'+i);
+    dot.className='step-dot';
+    if(i<n){dot.classList.add('done');dot.innerHTML='✓';}
+    else if(i===n){dot.classList.add('active');dot.innerHTML=i;}
+    else{dot.innerHTML=i;}
+    if(line) line.className='step-line'+(i<n?' done':'');
+  }
+  document.getElementById('builder').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function goToStep2() {
+  const tr = t[currentLang];
+  if(!document.getElementById('bizName').value.trim()||!document.getElementById('industry').value||!document.getElementById('phone').value.trim()||!document.getElementById('address').value.trim()){
+    alert(tr.alert_fill);
+    return;
+  }
+  goToStep(2);
+}
+
+function selectTheme(el,theme){
+  document.querySelectorAll('.theme-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTheme=theme;
+}
+
+function generateSite(){
+  goToStep(3);
+  const ids=['gs1','gs2','gs3','gs4','gs5'];
+  ids.forEach(id=>document.getElementById(id).className='gen-step-item');
+  let i=0;
+  function tick(){
+    if(i>0) document.getElementById(ids[i-1]).className='gen-step-item done';
+    if(i<ids.length){
+      document.getElementById(ids[i]).className='gen-step-item active';
+      i++;
+      setTimeout(tick,700);
+    } else {
+      setTimeout(()=>{buildPreview();goToStep(4);},400);
+    }
+  }
+  tick();
+}
+
+function buildPreview(){
+  const bizName=document.getElementById('bizName').value.trim();
+  const industry=document.getElementById('industry').value;
+  const phone=document.getElementById('phone').value.trim();
+  const address=document.getElementById('address').value.trim();
+  const hours=document.getElementById('hours').value.trim()||'Mon–Sat 10am–8pm · Sun 11am–6pm';
+  const servicesRaw=document.getElementById('services').value.trim();
+  const themes={
+    dark:{bg:'#0d0d1c',accent:'#c9a84c',text:'#fafaf8',muted:'#7a7a8a',card:'rgba(255,255,255,0.04)',border:'rgba(255,255,255,0.1)',btnTxt:'#fff',footerBg:'#060612',footerTxt:'#555'},
+    rose:{bg:'#fdf8f3',accent:'#c4856a',text:'#2b1f1a',muted:'#8a7570',card:'white',border:'#e8d8d0',btnTxt:'#2b1f1a',footerBg:'#2b1f1a',footerTxt:'rgba(255,255,255,0.4)'},
+    forest:{bg:'#f4f7f4',accent:'#3d5c38',text:'#1c2b1c',muted:'#6b7d6a',card:'white',border:'#d0dece',btnTxt:'#fff',footerBg:'#1c2b1c',footerTxt:'rgba(255,255,255,0.4)'},
+    terra:{bg:'#faf6f0',accent:'#c06b3a',text:'#2c2016',muted:'#857060',card:'white',border:'#ddd0be',btnTxt:'#fff',footerBg:'#2c2016',footerTxt:'rgba(255,255,255,0.4)'}
+  };
+  const th=themes[selectedTheme];
+  const taglines={'Spa / Massage':'Where stillness begins.','스파 / 마사지':'Where stillness begins.','Spa / Masajes':'Donde comienza la calma.','水疗 / 按摩':'宁静从这里开始。','Spa / Massage (VI)':'Nơi bắt đầu sự tĩnh lặng.',
+    'Nail Salon':'Where nails become art.','네일샵':'Where nails become art.','Salón de Uñas':'Donde las uñas se vuelven arte.','美甲店':'让指甲成为艺术。','Tiệm Nail':'Nơi móng tay trở thành nghệ thuật.',
+    'Hair Salon':'The art of great hair.','헤어샵':'The art of great hair.','Salón de Belleza':'El arte del cabello perfecto.','美发店':'美发的艺术。','Tiệm Tóc':'Nghệ thuật tóc đẹp.',
+    'Restaurant / Cafe':'Good food, honest flavors.','식당 / 카페':'Good food, honest flavors.','Restaurante / Café':'Buena comida, sabores honestos.','餐厅 / 咖啡厅':'好食材，真滋味。','Nhà Hàng / Cà Phê':'Ẩm thực ngon, hương vị thật.'};
+  const tagline=taglines[industry]||'Quality you can trust.';
+  const lines=servicesRaw?servicesRaw.split('\n').filter(s=>s.trim()):[];
+  const sHTML=lines.length?lines.map((s,i)=>{
+    const d=s.search(/[-–—]\s*[\$¥£€]?\d/);
+    const nm=d>-1?s.slice(0,d).trim():s.trim();
+    const pr=d>-1?s.slice(d+1).replace(/^[-–—]\s*/,'').trim():'';
+    return `<div style="padding:1.1rem 1.4rem;border:1px solid ${th.border};border-radius:0.75rem;background:${th.card};display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+      <div><div style="font-size:0.6rem;color:${th.accent};font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem;">${String(i+1).padStart(2,'0')}</div><div style="font-weight:500;color:${th.text};">${nm}</div></div>
+      ${pr?`<div style="font-weight:700;color:${th.accent};white-space:nowrap;">${pr}</div>`:''}
+    </div>`;
+  }).join(''):`<div style="padding:1.25rem;border:1px solid ${th.border};border-radius:0.75rem;color:${th.muted};font-size:0.875rem;">Add your services above to display them here.</div>`;
+
+  const slug=bizName.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  document.getElementById('previewTitle').textContent=bizName+' — Preview';
+  document.getElementById('previewUrl').textContent=slug+'.com';
+
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',sans-serif;background:${th.bg};color:${th.text};font-size:15px;line-height:1.6;}
+nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0.875rem 5vw;background:${th.bg};border-bottom:1px solid ${th.border};}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;}ul{display:flex;gap:1.25rem;list-style:none;align-items:center;}
+a{font-size:0.75rem;color:${th.muted};text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;}
+.nb{background:${th.accent};color:${th.btnTxt}!important;padding:0.4rem 1rem;border-radius:100px;}
+.hero{min-height:86vh;display:flex;align-items:center;padding:5rem 5vw 4rem;}
+.ey{font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:${th.accent};margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;}
+.ey::before{content:'';width:24px;height:0.5px;background:${th.accent};}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.25rem,5vw,4rem);font-weight:700;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1rem;}
+h1 em{font-style:italic;color:${th.accent};}
+.sub{font-size:0.9rem;color:${th.muted};max-width:380px;line-height:1.8;margin-bottom:1.75rem;font-weight:300;}
+.meta{font-size:0.78rem;color:${th.muted};margin-bottom:1.75rem;}
+.meta strong{color:${th.text};}
+.btn{display:inline-block;background:${th.accent};color:${th.btnTxt};padding:0.8rem 1.75rem;border-radius:100px;font-size:0.875rem;font-weight:500;text-decoration:none;}
+.sts{display:flex;gap:1.75rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid ${th.border};}
+.sn{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;}.sl{font-size:0.68rem;color:${th.muted};}
+sec{display:block;padding:4.5rem 5vw;}
+.st{font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:${th.accent};margin-bottom:0.75rem;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.25rem);font-weight:700;line-height:1.1;letter-spacing:-0.01em;margin-bottom:1.75rem;}
+h2 em{font-style:italic;color:${th.accent};}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0.875rem;}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;}
+.rc{background:${th.card};border:1px solid ${th.border};border-radius:1rem;padding:1.5rem;}
+.rs{color:${th.accent};margin-bottom:0.6rem;font-size:0.85rem;}
+.rt{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;line-height:1.6;color:${th.text};margin-bottom:0.85rem;}
+.ra{font-size:0.7rem;color:${th.muted};text-transform:uppercase;letter-spacing:0.08em;}
+.cb{background:${th.card};border:1px solid ${th.border};border-radius:1.25rem;padding:2.25rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
+.ci{display:flex;flex-direction:column;gap:0.875rem;}.ii{display:flex;gap:0.75rem;align-items:flex-start;}
+.il{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:${th.muted};margin-bottom:2px;}
+.iv{font-size:0.85rem;color:${th.text};}
+.cb-btn{display:block;background:${th.accent};color:${th.btnTxt};padding:0.9rem 1.25rem;border-radius:100px;text-align:center;text-decoration:none;font-size:0.875rem;font-weight:500;margin-top:0.875rem;}
+footer{background:${th.footerBg};padding:1.75rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.fl{font-family:'Playfair Display',serif;font-weight:700;color:${selectedTheme==='dark'?'white':th.bg};font-size:0.95rem;}
+footer p{font-size:0.72rem;color:${th.footerTxt};}
+</style></head><body>
+<nav><div class="logo">${bizName}</div><ul><li><a href="#services">Services</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#contact" class="nb">Book Now</a></li></ul></nav>
+<section class="hero" style="display:block;">
+<div class="ey">${industry} &nbsp;·&nbsp; ${address.split(',').slice(-2).join(',').trim()}</div>
+<h1><em>${tagline.split(' ').slice(0,2).join(' ')}</em><br>${tagline.split(' ').slice(2).join(' ')}</h1>
+<p class="sub">Professional ${industry} services — welcoming, comfortable, and always focused on you.</p>
+<p class="meta">⭐ 4.9 Google Rating &nbsp;·&nbsp; <strong>${address}</strong></p>
+<a href="tel:${phone.replace(/\D/g,'')}" class="btn">Call to Book — ${phone}</a>
+<div class="sts"><div><div class="sn">4.9</div><div class="sl">Google Rating</div></div><div><div class="sn">5★</div><div class="sl">Reviews</div></div><div><div class="sn">Open</div><div class="sl">Walk-ins Welcome</div></div></div>
+</section>
+<sec id="services" style="background:${th.card};border-top:1px solid ${th.border};border-bottom:1px solid ${th.border};">
+<div class="st">Our Services</div><h2>What we <em>offer</em></h2>
+<div class="sg">${sHTML}</div></sec>
+<sec id="reviews"><div class="st">Reviews</div><h2>What our <em>guests say</em></h2>
+<div class="rg">
+<div class="rc"><div class="rs">★★★★★</div><p class="rt">"Absolutely amazing. Professional, clean, and the results were outstanding."</p><div class="ra">— Sarah M. · Google</div></div>
+<div class="rc"><div class="rs">★★★★★</div><p class="rt">"My new favorite place. The staff is so welcoming and the quality is unmatched."</p><div class="ra">— James T. · Google</div></div>
+<div class="rc"><div class="rs">★★★★★</div><p class="rt">"I've been coming here for months and it's always a great experience."</p><div class="ra">— Linda K. · Google</div></div>
+</div></sec>
+<sec id="contact" style="background:${th.card};border-top:1px solid ${th.border};">
+<div class="st">Visit Us</div><h2>Come <em>see us.</em></h2>
+<div class="cb">
+<div class="ci">
+<div class="ii"><div>📍</div><div><div class="il">Address</div><div class="iv">${address}</div></div></div>
+<div class="ii"><div>📞</div><div><div class="il">Phone</div><div class="iv">${phone}</div></div></div>
+<div class="ii"><div>🕐</div><div><div class="il">Hours</div><div class="iv">${hours}</div></div></div>
+</div>
+<div><a href="tel:${phone.replace(/\D/g,'')}" class="cb-btn">Call to Book — ${phone}</a></div>
+</div></sec>
+<footer><div class="fl">${bizName}</div><p>${address}</p><p>© 2025 ${bizName}. All rights reserved.</p></footer>
+</body></html>`;
+  document.getElementById('previewFrame').srcdoc=html;
+}
+
+function selectPkg(el,price,name){
+  document.querySelectorAll('.price-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedPrice=price;
+  selectedPkgLabel=name;
+  updateTotal();
+}
+
+function updateTotal(){
+  const mem=document.getElementById('memCheck').checked;
+  document.getElementById('pkgName').textContent=selectedPkgLabel;
+  document.getElementById('pkgPrice').textContent='$'+selectedPrice;
+  document.getElementById('memRow').style.display=mem?'flex':'none';
+  document.getElementById('grandTotal').textContent='$'+selectedPrice+(mem?' + $59/mo':'');
+}
+
+function submitOrder(){
+  document.getElementById('paymentSection').style.display='none';
+  document.getElementById('successScreen').style.display='block';
+  document.getElementById('successScreen').scrollIntoView({behavior:'smooth'});
+}
+</script>
 </body>
 </html>
